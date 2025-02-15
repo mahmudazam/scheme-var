@@ -1,0 +1,6 @@
+
+if make; then
+  git add "$(cat .proj_name).pdf"
+else
+  exit 1
+fi
