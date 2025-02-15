@@ -1,0 +1,290 @@
+
+\subsection{Ringed Spaces}
+
+\begin{cor}\label{cor:pushfrwrd-schemat-nat}
+In the context of \cref{cns:schematization} and \cref{lem:schematization-im},
+the following diagram commutes strictly:
+\[\begin{tikzcd}
+\Sh(Y) \ar[r, "\alpha_{Y, *}"] \ar[d, "f_*" left] &
+\Sh(t(Y)) \ar[d, "t(f)_*"] \\
+\Sh(X) \ar[r, "\alpha_{X, *}" below] & \Sh(t(X))
+\end{tikzcd}\]
+\end{cor}
+\begin{proof}
+This follows from \cref{lem:schematization-nat} and the observation
+that the pushforward operation $(-)_*$ commutes with composition.
+\end{proof}
+
+\begin{thm}\label{thm:alpha-pushfwd-iso}
+In the context of \cref{cns:schematization} and \cref{lem:schematization-im},
+the pushforward functor:
+\[
+\alpha_{X, *} : \Sh(X) \to \Sh(t(X))
+\]
+is an isomorphism (not just an equivalence) of categories.
+\end{thm}
+\begin{proof}
+By \cref{thm:schematization-ord-iso}, $\alpha_X^{-1} : \Op(X) \to \Op(t(X))$
+is an isomorphism of posets and this gives an isomorphism of categories
+$(\alpha_X^{-1})^\op : \Op(X)^\op \to \Op(t(X))^\op$. This, in turn
+means that the pushforward functor
+\[
+\alpha_{X, *} : \PSh(X) = \Fun(\Op(X)^\op, \Set)
+\to \Fun(\Op(t(X))^\op, \Set) = \PSh(t(X))
+\]
+is an isomorphism of categories. Then, the pushforward of sheaves is given
+by restricting the domain and codomain of
+$\alpha_{X, *} : \PSh(X) \to \PSh(t(X))$. This shows that
+$\alpha_{X, *} : \Sh(X) \to \Sh(t(X))$ is fully faithful.
+We would like to show that it is strictly surjective.
+
+Let $F : \Op(t(X))^\op \to \Set$ be a sheaf on $t(X)$.
+Then, we observe that $F = F \circ t_\Op^\op \circ (\alpha_X^{-1})^\op
+= \alpha_{X, *}(F \circ t_\Op^\op)$, where the equalities are strict, since
+$t_\Op$ and $\alpha_X^{-1}$ are poset morphisms strictly inverse to each other.
+Thus, it suffices to show that
+$F \circ t_\Op^\op : \Op(X)^\op \to \Set$ is a sheaf.
+Consider an open cover $\coprod_{i \in I} U_i \to U$ of $U \in \Op(X)$.
+Then, $\coprod_{i \in I} t_\Op(U_i) \to t_\Op(U)$ is an open cover
+of $t_\Op(U)$ by \cref{thm:schemat-cover}; for each $i, j \in I$,
+$t_\Op(U_i) \cap t_\Op(U_j) = t_\Op(U_i \cap U_j)$ by
+\cref{lem:schemat-ord-iso-intersection};
+and since $F$ is a sheaf by assumption, the following
+is an equalizer diagram:
+\[\begin{tikzcd}
+(F \circ t_\Op^\op)(U) \ar[r] &
+\prod_{i \in I} (F \circ t_\Op^\op)(U_i)
+    \ar[r, shift left] \ar[r, shift right] &
+\prod_{i, j \in I} (F \circ t_\Op^\op)(U_i \cap U_j)
+\end{tikzcd}\]
+\end{proof}
+
+\begin{defn}\label{defn:Set-space}
+Given a category $\sC$ with products,
+we call a pair $(X, E)$, where $X$ is a topological space and
+$E : \Op(X)^\op \to \sC$ is a $\sC$--valued sheaf, a $\sC$--space.
+A morphism of $\sC$--spaces $(Y, F) \to (X, E)$ consists of a pair
+$(f, f^\sharp)$, where $f : Y \to X$ is a continuous function
+and $f^\sharp : E \to f_*(F)$ is a morphism of $\sC$--valued
+sheaves. Given morphisms of $\sC$--spaces
+\[
+(Z, G) \to[{(g, g^\sharp)}] (Y, F) \to[{(f, f^\sharp)}] (X, E)
+\]
+we define the composite to be the pair
+$(f \circ g, f_*(g^\sharp) \circ f^\sharp)$.
+One can check that $(\id_X, \id_{E})$ acts as two-sided identity
+for this composition operation.
+We denote
+the category of $\sC$--spaces by $\Sh_\sC$. When $\sC = \Set$,
+we simply write $\Sh$.
+\end{defn}
+
+\begin{lem}\label{lem:stalk-open-subset}
+Let $(X, E)$ be a $\sC$--space and $U$, an open subset of $X$.
+Then, for any $p \in U$, we have an isomorphism
+$E_p \cong (E|_U)_p$ in $\sC$.
+\end{lem}
+\begin{proof}
+Let $\Op(X)_p, \Op(U)_p$ denote the poset of open subsets of $X$ and $U$
+containing $p$. Then, $E_p = \colim E|_{\Op(X)_p}$
+and $(E|_U)_p = \colim (E|_U)_{\Op(U)_p} = \colim E|_{\Op(U)_p}$.
+It suffices to show that $E_p$ is an initial cone under
+$E|_{\Op(U)_p}$. We observe that for each $W \in \Op(U)_p$,
+$W \in \Op(X)_p$ by \cref{cor:op-op-cls-cls} so that $E_p$
+is cone under $E|_{\Op(U)_p}$ as well.
+Let $\set{c_W : E(W) \to C}_{W \in \Op(U)_p}$ be another cone under
+$E|_{\Op(U)_p}$.
+We observe that for $S' \subset S \in \Op(X)_p$, the following diagram of
+restriction maps commutes:
+\[\begin{tikzcd}
+E(S) \ar[r] \ar[d] & E(S \cap U) \ar[d] \\
+E(S') \ar[r] & E(S' \cap U)
+\end{tikzcd}\]
+Therefore,
+$\set{-|_{S \cap U} \circ c_{S \cap U} : E(S) \to C}_{S \in \Op(X)_p}$
+is a cone under $E|_{\Op(X)_p}$.
+$E_p$ being an initial cone under $E|_{\Op(X)_p}$ gives
+a unique map of cones $\alpha : E_p \to C$ under $E|_{\Op(X)_p}$.
+Since $\Op(U)_p \subset \Op(X)_p$, this also makes
+the map $\alpha : E_p \to C$ a map of cones under $E|_{\Op(U)_p}$.
+Let $\beta : E_p \to C$ be another map of cones under $E|_{\Op(U)_p}$.
+Then, for any $S' \subset S \in \Op(X)_p$ again, we have that the following
+diagram commutes:
+\[\begin{tikzcd}
+& E(S) \ar[ld] \ar[rd, "-|_{S \cap U} \circ c_{S \cap U}"] & \\
+E_p \ar[rr, "\beta" below ]& & C
+\end{tikzcd}\]
+This makes $\beta$ a map of cones under $\Op(X)_p$ and by the uniqueness
+of $\alpha$ as a map of cones under $\Op(X)_p$, we must have
+$\alpha = \beta$.
+\end{proof}
+
+\begin{cns}\label{cns:schematization-ringed-sp}
+Let $X$ be a topological space and $E : \Op(X)^\op \to \Set$,
+a sheaf of sets on $X$. Then, define:
+\[
+t(X, E) := (t(X), \alpha_{X, *}(E))
+\]
+where $t(X), \alpha_X$ are as in \cref{cns:schematization}.
+Now, consider a continuous map $f : Y \to X$, a sheaf of sets
+$F$ on $Y$, and a morphism of sheaves $f^\sharp : E \to f_*(F)$.
+By \cref{cor:pushfrwrd-schemat-nat},
+$\alpha_{X, *}(f_*(F)) = t(f)_*(\alpha_{Y, *}(F))$. Thus, we have a map:
+$\alpha_{X, *}(f^\sharp) : \alpha_{X, *}(E) \to t(f)_*(\alpha_{Y, *}(F))$.
+Define:
+\[
+t(f, f^\sharp) := (t(f), \alpha_{X, *}(f^\sharp))
+\]
+In addition, we have a morphism of ringed spaces:
+\[
+\alpha_{(X, E)} = (\alpha_X, \id_{\alpha_{X, *}(E)}) : (X, E) \to t(X, E)
+\]
+\end{cns}
+
+\begin{lem}\label{lem:schemat-ringed-sp-fun}
+In the context of \cref{cns:schematization-ringed-sp}, the map
+\[\begin{array}{ccccc}
+t &:& \Sh &\to& \Sh \\
+  &:& (X, E) &\to& (t(X), \alpha_{X, *}(E)) \\
+  &:& (f, f^\sharp)
+        &\to& (t(f), \alpha_{X, *}(f^\sharp)) \\
+\end{array}\]
+is a functor, and the maps $\alpha_{(X, F)} : (X, F) \to t(X, F)$
+are natural in $(X, F)$, giving a natural transformation:
+$\alpha : \id_{\mathrm{RingedSp}} \To t$.
+\end{lem}
+\begin{proof}
+Consider a pair of composeable morphisms in $\Sh$:
+\[
+(Z, G) \to[{(g, g^\sharp)}] (Y, F) \to[{(f, f^\sharp)}] (X, E)
+\]
+We have:
+\begin{align*}
+ & t(f \circ g, f_*(g^\sharp) \circ f^\sharp) \\
+=& (t(f \circ g), \alpha_{X, *}(f_*(g^\sharp) \circ f^\sharp)) \\
+=& (t(f) \circ t(g), \alpha_{X, *}(f_*(g^\sharp) \circ f^\sharp))
+    && \text{\cref{lem:schematization-fun-comp}} \\
+=& (t(f) \circ t(g),
+    \alpha_{X, *}(f_*(g^\sharp)) \circ \alpha_{X, *}(f^\sharp)) \\
+=& (t(f) \circ t(g),
+    t(f)_*(\alpha_{Y, *}(g^\sharp)) \circ \alpha_{X, *}(f^\sharp))
+    && \text{\cref{cor:pushfrwrd-schemat-nat}} \\
+=& (t(f), \alpha_{X, *}(f^\sharp)) \circ (t(g), \alpha_{Y, *}(g^\sharp))
+\end{align*}
+Then, we have:
+\begin{align*}
+ & t(\id_X, \id_{E}) \\
+=& (t(\id_X), \alpha_{X, *}(\id_E)) \\
+=& (\id_{t(X)}, \alpha_{X, *}(\id_E))
+    && \text{\cref{lem:schematization-fun-id}} \\
+=& (\id_{t(X)}, \id_{\alpha_{X, *}(E)})
+\end{align*}
+
+For naturality of $\alpha_{(X, E)}$ in $(X, E)$, we first observe that
+that the map of underlying topological spaces $\alpha_X$ is natural in $X$
+by \cref{thm:schematization-fun-nat}.
+Then, we observe that the following diagram of sheaves of sets
+over $X$ commutes:
+\[\begin{tikzcd}[column sep=huge]
+\alpha_{X, *}(E)
+    \ar[r, "\alpha_{X, *}(f^\sharp)"]
+    \ar[d, "\id_{\alpha_{X, *}(E)}" left] &
+t(f)_*(\alpha_{Y, *}(F)) \ar[d, "\id_{t(f)_*(\alpha_{Y, *}(F))}"] \\
+\alpha_{X, *}(E) \ar[r, "\alpha_{X, *}(f^\sharp)" below] &
+\alpha_{X, *}(f_*(F)) = t(f)_*(\alpha_{Y, *}(F))
+\end{tikzcd}\]
+This shows that the following diagram of ringed spaces commutes:
+\[\begin{tikzcd}
+(Y, F) \ar[r, "\alpha_{Y, F}"] \ar[d, "{(f, f^\sharp)}" left] &
+t(Y, F) = (t(Y), \alpha_{Y, *}(F))
+    \ar[d, "{(t(f), \alpha_{X, *}(f^\sharp))}"] \\
+(X, E) \ar[r, "\alpha_{X, E}" below] &
+t(X, E) = (t(X), \alpha_{X, *}(E))
+\end{tikzcd}\]
+\end{proof}
+
+\begin{thm}\label{thm:schemat-ringed-sp-faithful}
+In the context of \cref{lem:schemat-ringed-sp-fun}, the functor $t$
+restricted to the full subcategory of $\Sh$ consisting of those pairs
+$(X, E)$ where $X$ is Kolmogorov ($T_0$) is faithful.
+\end{thm}
+\begin{proof}
+Consider two maps of $\Set$--spaces (with Kolmogorov underlying spaces)
+$(f, f^\sharp), (g, g^\sharp) : (Y, F) \to (X, E)$ such that
+$t(f, f^\sharp) = t(g, g^\sharp)$. Then,
+$t(f) = t(g)$ and $\alpha_{X, *}(f^\sharp) = \alpha_{X, *}(g^\sharp)$.
+Then, \cref{thm:schemat-fun-faithful} implies $f = g$ and
+\cref{thm:alpha-pushfwd-iso} implies $f^\sharp = g^\sharp$.
+\end{proof}
+
+\begin{lem}\label{lem:set-sp-iso}
+If $(f, f^\sharp) : (Y, F) \to (X, E)$ is a morphism of $\Set$--spaces
+such that $f$ is a homeomorphism and $f^\sharp$ is an isomorphism
+of sheaves of sets over $X$, then $(f, f^\sharp)$ is an isomorphism
+of $\Set$--spaces.
+\end{lem}
+\begin{proof}
+$f$ has a continuous inverse $f^{-1} : X \to Y$. Let $W \subset Y$
+be an open subset, so that $f(W) \subset X$ is also open, since $f$
+is a homeomorphism. Then, $f^{-1}_*E(W) = E((f^{-1})^{-1}(W)) = E(f(W))$,
+and we have an isomorphism of rings
+$f^\sharp_{f(W)} : E(f(W)) \to F(f^{-1}(f(W))) = F(W)$. That is, we have the
+inverse ring homomorphism
+$(f^\sharp_{f(W)})^{-1} : F(W) \to E(f(W)) = f^{-1}_*E(W)$, which
+we will denote as $f^{-1, \sharp}_W$. We would like to show that this
+this map is natural in $U$. Let $V \subset W$, and observe that
+the following diagram commutes by the naturality of $f^\sharp$:
+\[\begin{tikzcd}
+f^{-1}_*E(U) = E(f(W)) \ar[r, "f^\sharp_{f(U)}"] \ar[d, "-|_{f(V)}" left] &
+f_*F(f(W)) = F(W) \ar[d, "-|_{f(V)}"] \\
+f^{-1}_*E(V) = E(f(V)) \ar[r, "f^\sharp_{f(V)}" below] & f_*F(f(V)) = F(V)
+\end{tikzcd}\]
+However, since $f^{-1, \sharp}_W = (f^\sharp_W)^{-1}$ for all open
+$W \subset Y$, this shows the naturality of $f^{-1, \sharp}_W$
+in $W$. Hence, $(f^{-1}, f^{-1, \sharp}) : (X, E) \to (Y, F)$
+is a morphism of ringed spaces. We observe that
+$f_*(f^{-1, \sharp})_U = f^{-1, \sharp}_{f^{-1}(U)}$ for all
+open $U \subset X$
+and $f^{-1}_*(f^\sharp)_W = f^\sharp_{f(W)}$
+for all open $W \subset Y$.
+Then, we observe that
+\[
+f^{-1}_*(f^\sharp)_W \circ f^{-1, \sharp}_W
+= f^{\sharp}_{f(W)} \circ (f^\sharp_{f(W)})^{-1}
+= \id_{F(W)}
+\]
+and similarly:
+\[
+f_*(f^{-1, \sharp})_U \circ f^\sharp_U
+= f^{-1, \sharp}_{f^{-1}(U)} \circ f^\sharp_U
+= (f^{\sharp}_{U})^{-1} \circ f^\sharp_U
+= \id_{E(U)}
+\]
+\end{proof}
+
+\begin{lem}\label{lem:sheaf-map-localization}
+Let $\alpha : E \to F$ be a map of sheaves of sets over a topological
+space $X$. Then, for any $x \in X$, the map of stalks
+$\alpha_x : E_x \to F_x$ is given, for any germ $[(U, s)]$ with
+$x \in U, s \in E(U)$ by:
+\[
+[s] \mapsto {[U, \alpha_U(s)]}
+\]
+\end{lem}
+\begin{proof}
+$E_x$ is the colimit of $E$ restricted
+to the subcategory of the open sets of $X$ containing $x$ so that,
+we have a map $E(U) \to E_x$ for any open $U \subset X$ with $x \in U$,
+and the analogous statement holds for $F_x$.
+The map $\alpha_x : E_x \to F_x$ is the map obtained by the universal
+property of the colimit defining $E_x$. In particular, the following
+diagram commutes:
+\[\begin{tikzcd}
+E(U) \ar[r, "\alpha_U"] \ar[d] & F(U) \ar[d] \\
+E_x \ar[r, "\alpha_x" below] & F_x
+\end{tikzcd}\]
+which is precisely the statement.
+\end{proof}
+
+
+

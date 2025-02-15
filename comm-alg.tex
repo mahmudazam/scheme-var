@@ -1,0 +1,211 @@
+
+\subsection{Basic Commutative Algebra Results}
+
+\begin{lem}\label{lem:Zar-cl-field}
+The Zariski closed subsets of $k$ are precisely the finite subsets.
+\end{lem}
+\begin{proof}
+Let $S = \set{a_1, \dots, a_n} \subset k$. Then,
+$S = Z((x - a_1, \dots, x - a_n))$ is a closed set.
+Let $I$ be an ideal of $k[x]$ and let $f \in I$ be any polynomial.
+Then, $(f) \subset I \implies Z(I) \subset Z((f))$. However,
+$Z((f))$ has finitely many points as $f$ has finitely
+many roots. Thus, $Z(I)$ is finite.
+\end{proof}
+
+\begin{lem}\label{lem:poly-Zar-cont}
+Let $f \in k[x_1, \dots, x_n]$. Then, evaluating $f$ at points of $k^n$
+defines a Zariski continuous function $k^n \to k$.
+\end{lem}
+\begin{proof}
+By \cref{lem:Zar-cl-field}, a closed subset of $k$ is of the form
+$S = \set{a_1, \dots, a_m}$. Then, $b \in f^{-1}(S) \iff f(b) - a_i = 0$ for
+some $i = 1, \dots, m$. This is true if and only if
+$b \in Z((f - a_1)) \cup \cdots \cup Z((f - a_m))$, which is a closed
+subset of $k^n$.
+\end{proof}
+
+\begin{lem}\label{lem:ideal-preim}
+Let $f : R \to S$ be a homomorphism of commutative rings.
+Then, if $J \subset S$ is an ideal of $S$, $f^{-1}(J) \subset R$
+is an ideal of $R$. In addition, if $J$ is prime, so is $f^{-1}(J)$
+\end{lem}
+\begin{proof}
+We first observe that $0 \in J$ by definition of ideal, so that
+$0 \in f^{-1}(J)$ by definition of ring homomorphism.
+Let $a, b \in f^{-1}(J), r \in R$. We then have
+$f(a - b) = f(a) - f(b) \in J$ since $f(a), f(b) \in J$ and
+$J$ is an ideal. Thus, $a - b \in f^{-1}(J)$.
+Next, $f(ra) = f(r)f(a) \in J$ since $f(r) \in S, f(a) \in J$
+and $J$ is an ideal. Thus, $ra \in f^{-1}(J)$.
+We have shown that $f^{-1}(J)$ is closed under subtraction and multiplication
+by elements of $R$. Hence, $f^{-1}(J)$ is an ideal.
+
+Suppose $J$ is prime. Then, suppose for arbitrary $p, q \in R$, we have
+$pq \in f^{-1}(J)$. Then, $f(p)f(q) = f(pq) \in J$ implies that
+$f(p) \in J \iff p \in f^{-1}(J)$ or $f(q) \in J \iff q \in f^{-1}(J)$.
+This shows that $f^{-1}(J)$ is prime. 
+\end{proof}
+
+\begin{thm}\label{thm:correspondence-cring}
+Let $R$ be a commutative ring; $I$, an ideal of $R$ and $q : R \to R/I$,
+the quotient map. Let
+\[
+S(R, I) = \set[J]{I \subset J \subset R \text{, and $J$ is an ideal of } R}
+\]
+and
+\[
+T(R, I) = \set[J]{J \text{ is an ideal of } R/I}
+\]
+Then, for all $J$ in $S(R, I)$, $q(J) \in T(T, I)$;
+for all $K \in T(R, I)$, $q^{-1}(K) \in S(R, I)$, and
+the mappings $J \mapsto q(I)$ and $K \mapsto q^{-1}(I)$ are inverses
+to each other and both preserve containment.
+Finally, $J \in S(R, I)$ is prime if and only if
+$q(J) \in T(R, I)$ is prime.
+\end{thm}
+\begin{proof}
+Let $J \in S(R, I)$.
+We first observe that $q(0) = 0 \in q(J)$.
+Then, let $a + I, b + I \in q(J), c + I \in R/I$.
+Then, there exist $a', b' \in J$ such that $q(a') = a + I, q(b') = b + I$
+so that $a - a', b - b' \in I$. Then,
+$(a - b) - (a' - b') = (a - a') - (b - b') \in I$ so that
+$(a - b) + I = (a' - b') + I = q(a' - b')$. However,
+since $J$ is an ideal, $a' - b' \in J$. This shows that
+$(a + I) - (b + I) \in q(J)$. Next, $(c + I)(a +I) = ca + I$.
+However, $ca - ca' = c(a - a') \in I$ since $I$ is an ideal.
+Then, $ca + I = ca' + I = q(ca')$. However, $ca' \in J$ since $J$
+is an ideal. This shows that $ca + I = q(ca) \in q(J)$.
+Since $q(J)$ is thus closed under subtraction and multiplication
+by elements of $R/I$, $q(J) \in T(R, I)$.
+
+Now, consider $K \in T(R, I)$. Then, by \cref{lem:ideal-preim},
+$q^{-1}(K)$ is and ideal of $R$. We would like to show that
+$I \subset q^{-1}(K)$. Let $a \in I$, then $q(a) = a + I = 0 + I \in K$
+since $K$ is an ideal. Thus, $a \in q^{-1}(\set{0}) \subset q^{-1}(K)$.
+Hence, $q^{-1}(J) \in S(R, I)$.
+
+Now, $q(q^{-1}(K)) = K$ by elementary set theory since $q$ is surjective.
+Then, $J \subset q^{-1}(q(J))$, again by elementary set theory.
+So, suppose $j in q^{-1}(q(J))$ so that $j + I = q(j) \in q(J)$.
+This means there exists $j' \in J$ such that $q(j') = q(j)$. However,
+this implies that $j' + I = j + I \iff j - j' \in I$. Since
+$I \subset J$, we must have $j - j' \in J$. However, since $J$ is a
+subgroup of $R$, we must have $j \in J$. Thus, $q^{-1}(q(J)) \subset J$.
+Hence, we have shown that $q^{-1}(q(J)) = J$.
+
+That $q$ and $q^{-1}$ preserve containment follows by elementary set theory.
+
+It remains to show that $J$ is prime if and only if $q(J)$ is prime.
+If $J$ is prime, suppose then that $(a + I)(b + I) = ab + I \in q(J)$.
+Then, $ab + I = q(j) = j + I$ for some $j \in J$. Thus,
+$ab - j \in I \subset J$ which implies that $ab \in J$ since $J$
+is a subgroup of $R$. Thus, $a \in J$ or $b \in J$, since $J$ is prime
+by hypothesis. Hence, $q(a) \in q(J)$ or $q(b) \in q(J)$. This shows
+that $q(J)$ is prime.
+If, on the other hand, $q(J)$ is prime $q^{-1}(q(J))$ is a prime
+ideal of $R$ by \cref{lem:ideal-preim}. However, we have already shown
+that $q^{-1}(q(J)) = J$. Hence, $J$ is prime in $R$.
+\end{proof}
+
+\begin{lem}
+Let $A$ be a unital commutative ring;
+$I \subset A$ an ideal with quotient map $q : A \to A/I$,
+and $S \subset A$, a multiplicatively closed subset.
+Then, $q(S)$ is multiplicatively closed in $A/I$.
+\end{lem}
+\begin{proof}
+$1 \in S$ implies $q(1) = 1 + I = 1_{A/I} \in S$.
+Then, let $a + I, b + I \in q(S)$. There exist
+$a', b' \in S$ such that $q(a') = a' + I = a + I$
+and $q(b') = b' + I = b + I$. Then, $a'b' \in S$ and
+$(a + I)(b + I) = q(a')q(b') = q(a'b') \in q(S)$.
+\end{proof}
+
+\begin{lem}\label{lem:local-quot}
+Let $A$ be a unital commutative ring;
+$I \subset A$ an ideal with quotient map $q : A \to A/I$,
+and $S \subset A$, a multiplicatively closed subset.
+Then, the maps
+\[
+\phi : (A/I)q(S)^{-1} \to (AS^{-1})/(IS^{-1})
+     : \frac{a + I}{b + I} \mapsto \frac{a}{b} + IS^{-1}
+\]
+and
+\[
+\psi : (AS^{-1})/(IS^{-1}) \to (A/I)q(S)^{-1}
+     : \frac{a}{b} + IS^{-1} \mapsto \frac{a + I}{b + I}
+\]
+are well-defined ring homomorphisms and inverses to each other.
+\end{lem}
+\begin{proof}
+Let $q' : AS^{-1}/IS^{-1}$ be the quotient map and
+$l : A \to AS^{-1}, l' : (A/I)q(S)^{-1}$ be the localization maps.
+We observe that the map
+\[
+A \to[l] AS^{-1} \to[q'] AS^{-1}/IS^{-1}
+\]
+sends the ideal $I$ to $0 + IS^{-1} = 0_{AS^{-1}/IS^{-1}}$ so that we get
+a unique map $\phi'$ the following diagram commute, by the universal property
+of $A/I$:
+\[\begin{tikzcd}
+A \ar[r, "l"] \ar[d, "q" left] & AS^{-1} \ar[d, "q'"] \\
+A/I \ar[r, "\phi'" below] & AS^{-1}/IS^{-1}
+\end{tikzcd}\]
+This map is given by $a + I \mapsto q'(l(a)) = a/1 + IS^{-1}$.
+Now, we observe that $\phi'(q(S)) = q'(l(S))$ while $l(S)$
+is the set of invertible elements of $AS^{-1}$. Let $l(b) = b/1 \in l(S)$
+so that $1/b \in AS^{-1}$. Then,
+$q'(b/1)q'(1/b) = q'(b/1 \cdot 1/b) = q'(1) = 1$ so that $q'(l(b))$ is
+invertible in $AS^{-1}/IS^{-1}$ with inverse $q'(1/b)$. This gives unique map:
+\[
+(A/I)q(S)^{-1} \to AS^{-1}/IS^{-1}
+     : \frac{a + I}{b + I} \mapsto \frac{\phi'(a + I)}{\phi'(b + I)} + IS^{-1}
+\]
+However, $\phi'(a + I) = \phi'(q(a)) = q'(l(a)) = a/1 + IS^{-1}$
+and similarly, $1/\phi'(b + I) = 1/b + IS^{-1}$, so that
+$\frac{\phi'(a)}{\phi'(b)} + IS^{-1} = a/b + IS^{-1}$, so that this
+is exactly the map $\phi$. It is a well-defined ring homomorphism
+as the map was constructed by universal properties of localizations
+and quotients.
+
+Now, suppose $\phi((a + I)/(b + I)) = a/b + IS^{-1} = 0$,
+then $a/b \in IS^{-1}$ which implies that $a \in I$ and $b \in S$.
+However, since $a \in I$, $a + I = 0 + I$ which means
+$(a + I)/(b + I) = 0$. Thus, $\phi$ is injective.
+An element of $AS^{-1}/IS^{-1}$ is of the form $a/b + IS^{-1}$
+which is equal to $\phi((a + I)/(b + I))$, so that $\phi$ is also
+surjective. Hence, $\phi$ is a ring isomorphisms.
+The argument for surjectivity also shows that the
+inverse has to be $\psi$ as defined above.
+\end{proof}
+
+\begin{lem}\label{lem:loc-quot-ev}
+Let $A$ be a unital commutative ring with ideals $I \subset J \subset A$
+and a ring homomorphism $f : A \to B$ such that $f(A \setminus J)$
+is a subset of the set of invertible elements of $B$, and $I \subset \ker{f}$.
+Then, writing $q : A \to A/I$ for the
+quotient map, we have a ring homomorphism:
+\[
+\cls{f} : (A/I)_{q(J)} \to B : \frac{a + I}{b + I} \mapsto f(a)f(b)^{-1}
+\]
+\end{lem}
+\begin{proof}
+Since $I \subset J$, $q(J)$ is an ideal of $A/I$ by
+\cref{thm:correspondence-cring}.
+By the universal property of quotients, we have a unique map
+$f' : A/I \to B$ such that $f' \circ q = f$.
+Hence,
+$f'((A/I) \setminus q(J)) = f'(q(A) \setminus q(J))
+\subset f'(q(A \setminus J)) = f(A \setminus J)$ since $q$ is surjective.
+This shows that $f'((A/I) \setminus q(J))$ is a subset of the set of invertible
+elements of $B$. Thus, writing $l : (A/I) \to (A/I)_{q(J)}$ for
+the localization map, by the universal property of localization,
+we get a unique map $\cls{f} : (A/I)_{q(J)} \to B$ such that
+$\cls{f} \circ l = f'$ and this is given by:
+\[
+\cls{f}((a + I)/(b + I)) = f'(a + I)f'(b + I)^{-1} = f'(q(a))f'(q(b))^{-1}
+= f(a)f(b)^{-1}
+\]
+\end{proof}

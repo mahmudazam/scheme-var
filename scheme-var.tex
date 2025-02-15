@@ -1,0 +1,47 @@
+\documentclass{article}
+
+\input{preamble.tex}
+
+\usepackage{graphicx} % Required for inserting images
+
+\usepackage{biblatex}
+\addbibresource{refs.bib}
+
+\title{Schemes from Varieties}
+\author{Mahmud Azam}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+The purpose of these notes is to make precise what it means
+for a $k$--variety to be a $k$--scheme, for an algebraically closed
+field $k$. This is \cref{thm:scheme-of-var}. That is,
+these notes provide a detailed proof of \cite[Proposition 2.6]{HartAG}.
+The writing style of these notes is not expository, it simply provides
+the details of the proof. At the same time, we do not try to be efficient
+with our arguments and prove necessary statements as directly as possible,
+with as few appeals to ``powerful'' theorems as possible.
+\end{abstract}
+
+\tableofcontents
+
+\section{Basics from Point-Set Topology}
+
+\input{basic-topology}
+
+\input{irred-cls}
+
+\input{schematization-ringed-sp}
+
+\section{Schemes from Varieties}
+
+\input{comm-alg}
+
+\input{scheme-of-var}
+
+\printbibliography
+
+\end{document}

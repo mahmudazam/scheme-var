@@ -1,0 +1,741 @@
+
+\subsection{Irreducible Subsets}
+
+\begin{defn}
+A topological space $X$ is called irreducible if and only if
+$X$ is non-empty and
+$X = C \cup D$ for closed subsets $C, D$ of $X$ implies that
+$X = C$ or $X = D$. A subset of a topological space $X$
+is said to be irreducible if it is irreducible as a topological
+space with respect to the subspace topology.
+\end{defn}
+
+\begin{cor}\label{cor:irred-indep}
+If $X$ is a topological space and $U \subset X$ is any subset
+of $X$, then a subset $C \subset U \subset X$
+is an irreducible subset of
+$U$ if and only if it is an irreducible subset of $X$.
+\end{cor}
+\begin{proof}
+Apply \cref{lem:sub-sub-topology}.
+\end{proof}
+
+\begin{lem}\label{lem:open-of-irred}
+If $X$ is an irreducible topological space and
+$U \subset X$ is open, then $U$ is either empty or
+irreducible and dense.
+\end{lem}
+\begin{proof}
+Let $U = A \cup B$ for closed subsets $A, B$ of $U$.
+Then, $A = A' \cap U$, $B = B' \cap U$ for closed subsets $A', B'$
+of $X$ respectively, so that $U = (A' \cup B') \cap U \subset A' \cup B'$.
+Then, $X = (X \setminus U) \cup (A' \cup B')$, where both $X \setminus U$
+and $A' \cup B'$ are closed. Since, $X$ is irreducible, we have
+$X = X \setminus U$ in which case $U$ must be empty or
+$X = A' \cup B'$, in which case we can use the irreducibility
+of $X$ again to deduce that $X = A'$ or $X = B'$. If $X = A'$,
+then $U = X \cap U = A' \cap U = A$ and, similarly, if $X = B'$,
+then $U = B$.
+
+Then, $X = \cls{U} \cup (X \setminus U)$ implies that
+$X = \cls{U}$ since $U$ is non-empty. This means that $U$ is dense.
+\end{proof}
+
+\begin{lem}\label{lem:irred-in-union}
+Let $X$ be a topological space and $C, D$ two closed subsets of $X$.
+If $A \subset C \cup D \subset X$ is irreducible, then
+$A \subset C$ or $A \subset D$.
+\end{lem}
+\begin{proof}
+$A = A \cap (C \cup D) = (A \cap C) \cup (A \cap D)$,
+where $A \cap C$ and $A \cap D$ are closed in $A$.
+Thus, $A = A \cap C$ or $A = A \cap D$
+which implies that $A \subset C$ or $A \subset D$.
+\end{proof}
+
+\begin{lem}\label{lem:im-irred}
+Let $f : Y \to X$ be a continuous map.
+Then, if $C \subset Y$ is irreducible, $f(C)$
+is irreducible.
+\end{lem}
+\begin{proof}
+Suppose $f(C) = D \cup E$ for closed subsets $D, E$ of $X$.
+Then, $f^{-1}(D)$ and $f^{-1}(E)$ are close subsets of $Y$
+so that $f^{-1}(D) \cap C$ and $f^{-1}(E) \cap D$ are closed
+in $C$. Furthermore,
+$C \subset f^{-1}(f(C)) = f^{-1}(D \cup E)
+= f^{-1}(D) \cup f^{-1}(E)$. This implies that
+$(f^{-1}(D) \cap C) \cup (f^{-1}(E) \cap C) = C$.
+Since $C$ is irreducible, we must have $C = f^{-1}(D) \cap C$
+or $C = f^{-1}(E) \cap C$.
+In the first case
+$f(C) = f(f^{-1}(D) \cap C)
+= f(f^{-1}(D)) \cap f(C) \subset D \cap f(C) = D$.
+However, since $D \subset f(C)$, we have $f(C) = D$. In the second
+case, we have $f(C) = E$.
+\end{proof}
+
+\begin{lem}\label{lem:cls-irred}
+If $U$ is an irreducible subset of a topological space $X$,
+then $\cls{U}$ is also irreducible.
+\end{lem}
+\begin{proof}
+Suppose $\cls{U} = C \cup D$ for closed subsets $C, D$ of $X$.
+Then, $U = U \cap \cls{U} = (U \cap C) \cup (U \cap D)$, where
+$U \cap C$ and $U \cap D$ are closed in $U$. Thus, $U = U \cap C$
+or $U = U \cap D$. If $U = U \cap C$, then $U \subset C$ and
+$\cls{U} \subset C$ by definition of closure.
+Since $C \subset \cls{U}$ by hypothesis, we have $\cls{U} = C$.
+In the second case, we have $\cls{U} = D$.
+\end{proof}
+
+\begin{lem}\label{lem:single-irred}
+Let $X$ be a topological space and $x \in X$. Then $\set{x}$
+is an irreducible subset of $X$.
+\end{lem}
+\begin{proof}
+If $\set{x} = C \cup D$ for any sets $C$ and $D$,
+then $x \in C$ or $x \in D$. This implies
+$\set{x} \subset C$ or $\set{x} \subset D$. Thus,
+$\set{x} = C$ or $\set{x} = D$.
+\end{proof}
+
+\begin{cns}\label{cns:schematization}
+Let $(X, T)$ be a topological space where $X$ is a set
+and $T$, is a topology on $X$.
+Define:
+\[
+t(X) = \set[C]{C \text{ is an irreducible closed subset of } X}
+\]
+\[
+t(T) := \set[t(C)]{C \text{ is a closed subset of } X}
+\]
+\[
+\alpha_X : X \to \cP(X) : x \mapsto \cls{\set{x}}
+\]
+Let $f : Y \to X$ be a continuous map of topological
+spaces. Define:
+\[
+t(f) : t(Y) \to \mc{P}(X) : C \mapsto \cls{\set{f(C)}}
+\]
+\end{cns}
+
+\begin{lem}\label{lem:irred-cls-contain}
+In the context of \cref{cns:schematization}, for any closed
+$C \subset X$, $t(C) \subset t(X)$.
+\end{lem}
+\begin{proof}
+Let $C' \in t(C)$. Then, $C'$ is closed in $X$ by
+\cref{cor:op-op-cls-cls} and an irreducible subset of $X$
+by \cref{cor:irred-indep}.
+\end{proof}
+
+\begin{lem}\label{lem:schematization-ord}
+In the context of \cref{cns:schematization} and \cref{lem:schematization-im},
+Given closed sets $D \subset C \subset X$, we have
+$t(D) \subset t(C) \subset t(X)$. Given open sets
+$V \subset U \subset X$, we have
+$t(X) \setminus t(X \setminus V)
+\subset t(X) \setminus t(X \setminus U)
+\subset t(X)$.
+\end{lem}
+\begin{proof}
+For the first part, we simply repeat \cref{lem:irred-cls-contain}.
+For the second part, we observe that $V \subset U$ implies that
+$X \setminus V \supset X \setminus U$ which are both closed. We then
+utilize the first part to get:
+$t(X \setminus V) \supset t(X \setminus U)$ which then implies
+that $t(X) \setminus t(X \setminus V) \subset t(X) \setminus t(X \setminus U)
+\subset t(X)$.
+\end{proof}
+
+\begin{lem}\label{lem:schematization-empty}
+In the context of \cref{cns:schematization},
+$t(\varnothing) \in t(T)$ and
+$t(\varnothing) = \varnothing$.
+\end{lem}
+\begin{proof}
+$\varnothing$ is closed in $X$ so that $t(\varnothing) \in t(T)$
+by definition. Then, $\varnothing$ is not irreducible by definition
+so that the only subset of $\varnothing$, which is itself,
+is not irreducible. Thus, $t(\varnothing) = \varnothing$.
+\end{proof}
+
+\begin{lem}\label{lem:schematization-all}
+In the context of \cref{cns:schematization},
+$t(X) \in t(T)$.
+\end{lem}
+\begin{proof}
+It suffices to observe that $X$ is closed in $X$.
+\end{proof}
+
+\begin{lem}\label{lem:schematization-union}
+In the context of \cref{cns:schematization},
+for two closed subsets $C, D$ of $X$, we have
+$t(C) \cup t(D) = t(C \cup D)$.
+\end{lem}
+\begin{proof}
+Let $A \in t(C) \cup t(D)$. Then $A$ is an irreducible
+closed subset of $C$ or of $D$. In either case,
+$A \subset W \subset C \cup D$, where $W = C$ or $W = D$.
+By \cref{cor:op-op-cls-cls}, $A$ is closed in $C \cup D$
+and \cref{cor:irred-indep}, $A$ is irreducible in $C \cup D$.
+Thus, $A \in t(C \cup D)$.
+
+Let $A \in t(C \cup D)$. Then $A$ is an irreducible closed subset
+of $C \cup D$. Hence, we have $A \subset C$ or $A \subset D$
+by \cref{lem:irred-in-union}. Thus, we have that
+$A$ is closed and irreducible in $C$ or in $D$ by
+\cref{cor:op-op-cls-cls} and \cref{cor:irred-indep}.
+Thus, $A \in t(C)$ or $A \in t(D)$ which means $A \in t(C) \cup t(D)$.
+\end{proof}
+
+\begin{lem}\label{lem:schematization-intersection}
+In the context of \cref{cns:schematization}, let $\set{C_i}_{i \in I}$
+be a collection of closed subsets of $X$. Then,
+$t\br{\bigcap_{i \in I} C_i} = \bigcap_{i \in I} t(C_i)$.
+\end{lem}
+\begin{proof}
+Let $A \in t\br{\bigcap_{i \in I} C_i}$. Then, $A$ is a closed subset of
+$\bigcap_{i \in I} C_i \subset C_j$ by
+\cref{cor:op-op-cls-cls} and it is an irreducible subset of $C_j$
+by \cref{cor:irred-indep} for all $j \in I$. Thus, $A \in t(C_j)$ for
+all $j \in I$ and hence $A \in \bigcap_{i \in I} t(C_i)$.
+
+Let $A \in \bigcup_{i \in I} t(C_i)$. Then, $A$ is an irreducible
+closed subset of $C_j$ for all $j \in I$. In particular,
+$A \subset \bigcap_{i \in I} C_i$. Then, for any choice of $j \in I$,
+the fact  $A \subset \bigcap_{i \in I} C_i \subset C_j$ along with
+\cref{cor:op-op-cls-cls} and \cref{cor:irred-indep} shows that
+$A$ is an irreducible closed subset of $\bigcap_{i \in I} C_i$.
+Thus, $A \in t\br{\bigcap_{i \in I} C_i}$.
+\end{proof}
+
+\begin{thm}\label{thm:schematization-topology}
+In the context of \cref{cns:schematization} and \cref{lem:irred-cls-contain},
+taking $t(T)$ to be the set of closed subsets of $t(X)$
+gives a topology on $t(X)$.
+\end{thm}
+\begin{proof}
+Apply lemmas \ref{lem:schematization-empty},
+\ref{lem:schematization-all},
+\ref{lem:schematization-union} and
+\ref{lem:schematization-intersection}.
+\end{proof}
+
+\begin{lem}\label{lem:schematization-im}
+In the context of \cref{cns:schematization},
+$\im(\alpha_X) \subset t(X) \subset \cP(X)$ and
+$\im(t(f)) \subset t(X) \subset \cP(X)$.
+\end{lem}
+\begin{proof}
+Combine \cref{lem:single-irred} and \cref{lem:cls-irred}
+for the first containment, and
+\cref{lem:im-irred} and \cref{lem:cls-irred}
+for the second.
+\end{proof}
+
+\begin{lem}\label{lem:schematization-nat}
+In the context of \cref{cns:schematization} and \cref{lem:schematization-im},
+the following diagram commutes:
+\[\begin{tikzcd}
+Y \ar[r, "\alpha_Y"] \ar[d, "f" left] & t(Y) \ar[d, "t(f)"] \\
+X \ar[r, "\alpha_X" below] & t(X)
+\end{tikzcd}\]
+\end{lem}
+\begin{proof}
+We observe that for closed $y \in Y$
+$\alpha_X(f(y)) = \cls{\set{f(y)}} = \cls{f(\set{y})}$.
+On the other hand, $t(f)(\alpha_Y(y)) = \cls{f(\cls{\set{y}})}$.
+We get the equality of these sets by applying \cref{lem:cls-im} with
+$A = \set{y}$.
+\end{proof}
+
+\begin{lem}\label{lem:schematization-alpha-inj}
+In the context of \cref{cns:schematization} and \cref{lem:schematization-im},
+$\alpha_X$ is injective if and only if $X$ is Kolmogorov ($T_0$).
+\end{lem}
+\begin{proof}
+Suppose $\alpha_X$ is injective.
+Let $x, y \in X$ with $x \neq y$.
+Then, $\cls{\set{x}} = \alpha_X(x) \neq \alpha_X(y) = \cls{\set{y}}$.
+Then, either $\cls{\set{x}} \not\subset \cls{\set{y}}$
+or $\cls{\set{y}} \not\subset \cls{\set{x}}$. In the first case,
+there exists $w \in \cls{\set{x}}$ such that $w \not\in \cls{\set{y}}$.
+Then, either $w = x$ or $w$ is a limit point of $\set{x}$. If $w = x$,
+then $x = w \in X \setminus \cls{\set{y}}$. If $w$ is a limit point
+of $\set{x}$, then $X \setminus \cls{\set{y}}$ is an open neighbourhood
+of $w$ and hence must contain $x$. That is, in either case,
+$x \in X \setminus \cls{\set{y}}$ and $y \not\in X \setminus \cls{\set{y}}$.
+When $\cls{\set{y}} \not\subset \cls{\set{x}}$, the same argument
+shows that $y \in X \setminus \cls{\set{x}}$ and
+$x \not\in X \setminus \cls{\set{x}}$. Since, this applies for any
+$x, y \in X$ with $x \neq y$, $X$ is Kolmogorov.
+
+Now, suppose $X$ is Kolmogorov. Suppose, for $x, y \in X$,
+$\alpha_X(x) = \alpha_X(y)$. This means $\cls{\set{x}} = \cls{\set{y}}$.
+If $x \neq y$, then there is a neighbourhood $U$ of $x$ such that
+$y \not\in U$ or there is a neighbourhood $V$ of $y$ with $x \not\in U$.
+In the first case, $y \in X \setminus U$, which is closed, so that
+$\cls{\set{y}} \subset X \setminus U$. However, since $x \in U$,
+$x$ cannot be in $\cls{\set{y}}$ which contradicts the hypothesis that
+$\cls{\set{x}} = \cls{\set{y}}$. In the second case, we reach a similar
+contradiction. Thus, we must have $x = y$. Since this holds for
+all $x, y \in X$, $\alpha_X$ is injective.
+\end{proof}
+
+\begin{lem}\label{lem:schematization-alpha-im}
+In the context of \cref{cns:schematization} and \cref{lem:schematization-im},
+For any closed $C \subset X$, we have $\alpha_X(C) = \alpha_C(C) \subset t(C)$.
+In particular, $\alpha_X(C) = \alpha_X(C) \cap t(C)$.
+\end{lem}
+\begin{proof}
+Let $\iota : C \hto X$ be the subset inclusion.
+By \cref{lem:schematization-nat}, we have
+$\alpha_X \circ \iota = t(\iota) \circ \alpha_C$. Then,
+$t(\iota)(D) = \cls{\iota(D)} = \cls{D} = D$, for all $D \in t(C)$,
+since $D$ is closed in $X$ by \cref{cor:op-op-cls-cls}. Thus,
+\[
+\alpha_X(C) = \alpha_X(\iota(C)) = t(\iota)(\alpha_C(C)) = \alpha_C(C)
+\]
+\end{proof}
+
+\begin{lem}\label{lem:schematization-alpha-preim}
+In the context of \cref{cns:schematization} and \cref{lem:schematization-im},
+for a closed set $C \subset X$, we have
+$\alpha_X^{-1}(t(C)) = C$. For every open $U \subset X$, we have
+$\alpha_X^{-1}(t(X) \setminus t(X \setminus U)) = U$.
+\end{lem}
+\begin{proof}
+Let $x \in C$. Then, $\alpha_X(x) = \cls{\set{x}} \subset C$
+as $\set{x} \subset C$. By \cref{cor:op-op-cls-cls} and \cref{cor:irred-indep},
+$\alpha_X(x) = \cls{\set{x}} \in t(C)$. Suppose now that
+$x \in \alpha_X^{-1}(t(C))$. Then, $\alpha_X(x) = \cls{\set{x}} \in t(C)$.
+In particular, $\set{x} \subset \cls{\set{x}} \subset C$, so that
+$x \in C$.
+
+In particular, $\alpha_X^{-1}(t(X)) = X$ and
+$\alpha_X^{-1}(t(X \setminus U)) = X \setminus U$. Thus,
+\[
+\alpha_X^{-1}(t(X) \setminus t(X \setminus U))
+= \alpha_X^{-1}(t(X)) \setminus \alpha_X^{-1}(t(X \setminus U))
+= X \setminus (X \setminus U)
+= U
+\]
+\end{proof}
+
+\begin{lem}\label{lem:schemat-cls-of-a-pt}
+In the context of \cref{cns:schematization} and \cref{lem:schematization-im},
+for each $C \in t(X)$, we have $\cls{\set{C}} = t(C) \subset t(X)$.
+\end{lem}
+\begin{proof}
+Let $D \subset X$ be a closed subset of $X$ such that
+such that $\set{C} \subset t(D) \subset t(X)$. Then,
+$C \in t(D)$ implies that $C \subset D$ is irreducible and closed in $D$.
+Now, for any $C' \in t(C)$, $C'$ is irreducible and closed in
+$D$ as well by \cref{cor:irred-indep} and \cref{cor:op-op-cls-cls}. Thus,
+$C' \in t(D)$. Hence, $t(C) \subset t(D)$. Since every closed subset of
+$t(X)$ is of the form $t(D)$ for some closed subset $D \subset X$, we have
+shown that $t(C)$ is smallest closed subset of $t(X)$ containing
+$\set{C}$. Thus, $t(C) = \cls{\set{C}}$.
+\end{proof}
+
+\begin{lem}\label{lem:schemat-cls-pt-im-alpha}
+In the context of \cref{cns:schematization} and \cref{lem:schematization-im},
+let $t(X)^\cl$ be the sets of closed points of $t(X)$.
+Then, for each $C \in t(X)^\cl$ there exists $c \in C$ such that
+$C = \alpha_X(c)$. In particular,
+$t(X)^\cl \subset \im(\alpha_X)$.
+\end{lem}
+\begin{proof}
+Let $C \in t(X)$ be a closed point. Then, $C$ is non-empty by irreducibility.
+Let $c \in C$. We have $\alpha_X(c) = \cls{\set{c}} \subset C$.
+By \cref{cor:irred-indep} and \cref{cor:op-op-cls-cls},
+$\alpha_X(c) \in t(C)$. However, by \cref{lem:schemat-cls-of-a-pt} and
+hypothesis, $t(C) = \cls{\set{C}} = \set{C}$. Thus, $\alpha_X(c) = C$.
+\end{proof}
+
+\begin{lem}\label{lem:schemat-alpha-cls-pt}
+In the context of \cref{cns:schematization} and \cref{lem:schematization-im},
+let $X^\cl, t(X)^\cl$ denote the set of closed points of $X, t(X)$ respectively.
+Then, we have $\alpha_X(X^\cl) \subset t(X)^\cl$.
+If $X$ is Kolmogorov ($T_0$), in addition, then we also have:
+$\alpha_X^{-1}(t(X)^\cl) \subset X^\cl$.
+\end{lem}
+\begin{proof}
+If $x \in X$ is a closed point, we observe that by
+\cref{lem:schemat-cls-of-a-pt},
+\[
+\cls{\set{\alpha_X(x)}}
+= t(\alpha_X(x))
+= t\br{\cls{\set{x}}}
+= t(\set{x})
+= \set{\set{x}} 
+= \set{\cls{\set{x}}}
+= \set{\alpha_X(x)}
+\]
+
+Now, suppose $X$ is Kolmogorov. Let $x \in X$ such that $\alpha_X(x)$
+is a closed point of $X$. Now, suppose $x' \in \cls{\set{x}}$.
+Then, $\set{x'} \subset \cls{\set{x}}$ and hence
+$\cls{\set{x'}} \subset \cls{\set{x}}$. However,
+$\cls{\set{x'}} = \alpha_X(x') \in t(X)$ by \cref{lem:schematization-im}
+and by \cref{cor:irred-indep} and \cref{cor:op-op-cls-cls},
+$\cls{\set{x'}} = \alpha_X(x') \in t\br{\cls{\set{x}}} \subset t(X)$.
+However, by hypothesis and \cref{lem:schemat-cls-of-a-pt},
+$t\br{\cls{\set{x}}} = \cls{\set{\alpha_X(x)}} = \set{\alpha_X(x)}$.
+Thus, $\alpha_X(x') = \alpha_X(x)$. By \cref{lem:schematization-alpha-inj},
+we have $x' = x$. Since $x'$ was arbitrary, we have
+$\cls{\set{x}} = \set{x}$.
+\end{proof}
+
+\begin{thm}\label{thm:schemat-cls-pt-im-alpha}
+In the context of \cref{cns:schematization} and \cref{lem:schematization-im},
+let $X^\cl, t(X)^\cl$ be the sets of closed points of
+$X, t(X)$ respectively. By \cref{lem:schemat-alpha-cls-pt},
+$\im(\alpha_X|_{X^\cl}) \subset t(X)^\cl$, giving us a map:
+$\alpha_X^\cl = \alpha_X|_{X^\cl} : X^\cl \to t(X)^\cl$.
+If $X$ is Kolmogorov ($T_0$), this is a bijection.
+If $X$ is $T_1$, in addition, then $X = X^\cl$ and we have that
+$\alpha_X$ is a bijection of $X$ onto $t(X)^\cl$.
+\end{thm}
+\begin{proof}
+The fact that this is an injection follows from
+\cref{lem:schematization-alpha-inj}. Let $C \in t(X)^\cl$. Then,
+$C = \alpha_X(c)$ for some $c \in C \subset X$ by
+\cref{lem:schemat-cls-pt-im-alpha}. Then, by $\cref{lem:schemat-alpha-cls-pt}$,
+since $c \in \alpha_X^{-1}(t(X)^\cl)$, we must have that $c \in X^\cl$.
+\end{proof}
+
+\begin{thm}\label{thm:schematization-alpha-cont}
+In the context of \cref{cns:schematization} and \cref{lem:schematization-im},
+$\alpha_X$ is continuous and sends a closed set of its domain
+to a closed set of its image. If $X$ is Kolmogorov ($T_0$), in addition, then
+$\alpha_X$ is a homeomorphism onto its image. If $X$ is $T_1$, in addition,
+then $\alpha_X$ is a homeomorphism onto $t(X)^\cl$.
+\end{thm}
+\begin{proof}
+For continuity, it suffices to observe that every closed subset of
+$t(X)$ is of the form $t(C)$ for some closed $C \subset X$,
+and then apply \cref{lem:schematization-alpha-preim}.
+We then observe that $\alpha_X(C) = \alpha_X(C) \cap t(C)$
+by \cref{lem:schematization-alpha-im}, which is closed in $\alpha_X(C)$
+since $t(C) \in t(T)$ is a closed subset of $t(X)$ by
+\cref{thm:schematization-topology}. If $X$ is Kolmogorov,
+$\alpha_X$ is, in addition, injective by \cref{lem:schematization-alpha-inj},
+which together with the previous facts imply that it is a homeomorphism
+on to its image. If $X$ is $T_1$, this image is $t(X)^\cl$ by
+\cref{thm:schemat-cls-pt-im-alpha}.
+\end{proof}
+
+\begin{thm}\label{thm:schematization-ord-iso}
+In the context of \cref{cns:schematization} and \cref{lem:schematization-im},
+We have order-preserving functions:
+\[
+t_\Op : \Op(X) \to \Op(t(X)) : U \mapsto t(X) \setminus t(X \setminus U)
+\]
+\[
+\alpha_X^{-1} : \Op(t(X)) \to \Op(X) : V \mapsto \alpha_X^{-1}(V)
+\]
+that are inverses to each other. We also have another pair
+of order-preserving mappings:
+\[
+t_\Cl : \Cl(X) \to \Cl(t(X)) : C \mapsto t(C)
+\]
+\[
+\alpha_X^{-1} : \Cl(t(X)) \to \Cl(X) : D \mapsto \alpha_X^{-1}(D)
+\]
+that are again inverses to each other.
+\end{thm}
+\begin{proof}
+That the mappings $t_\Op, t_\Cl$ are order-preserving is
+\cref{lem:schematization-ord}. $\alpha_X^{-1}$ is order-preserving in each
+case because taking preimages preserves containment.
+
+Consider any closed $C \subset X$. We have
+$\alpha_X^{-1}(t_\Cl(C)) = \alpha_X^{-1}(t(C)) = C$
+by \cref{lem:schematization-alpha-preim}.
+Now, consider a closed $D \subset t(X)$. Then, by definition,
+$D = t(D')$ for some closed $D' \subset X$, so that
+$t_{\Cl}(\alpha_X^{-1}(D)) = t(\alpha_X^{-1}(t(D'))) = t(D') = D$
+by \cref{lem:schematization-alpha-preim} again.
+
+Let $U \subset X$ be any open subset. Then,
+$\alpha_X^{-1}(t_\Op(U)) = \alpha_X^{-1}(t(X) \setminus t(X \setminus U))
+= U$ by \cref{lem:schematization-alpha-preim}. Then, consider
+any open $V \subset t(X)$. Since $t(X) \setminus V$ is closed, it must be
+equal to $t(C)$ for some closed $C \subset X$ so that
+$V = t(X) \setminus t(C)$. Now, $C = X \setminus (X \setminus C)$,
+where $U = X \setminus C$ is open in $X$. Thus,
+$V = t(X) \setminus t(X \setminus U)$ and
+$t_\Op(\alpha_X^{-1}(V)) = t_\Op(U) = t(X) \setminus t(X \setminus U) = V$
+using \cref{lem:schematization-alpha-preim}.
+\end{proof}
+
+\begin{lem}\label{lem:schemat-open-membership}
+In the context of \cref{thm:schematization-ord-iso},
+for any open $W \subset X$ and $C \in t(X)$,
+$C \in t_\Op(W)$ if and only if $C \cap W \neq \varnothing$.
+\end{lem}
+\begin{proof}
+$C \in t_\Op(W) = t(X) \setminus t(X \setminus W)$ if and only if
+$C$ is not an irreducible and closed subset of $X \setminus W$.
+$C$ is irreducible and closed in $X \setminus W$ if and only if
+$C$ is contained in $X \setminus W$, for if it is contained
+in $X \setminus W$, which is closed, $C$ is irreducible and closed
+in it by \cref{cor:irred-indep} and \cref{cor:op-op-cls-cls}; and,
+if it is not contained in $X \setminus W$, it cannot possibly
+be an irreducible and closed subset of $X \setminus W$. Therefore,
+\end{proof}
+
+\begin{lem}\label{lem:schemat-ord-iso-union}
+In the context of \cref{thm:schematization-ord-iso},
+if $\set{U_i}_{i \in I}$ is a collection of open subsets of $X$,
+then $t\br{\bigcup_{i \in I} U_i} = \bigcup_{i \in I} t(U_i)$.
+\end{lem}
+\begin{proof}
+\begin{align*}
+t_\Op\br{\bigcup_{i \in I} U_i}
+=& t(X) \setminus t\br{X \setminus \br{\bigcup_{i \in I} U_i}} \\
+=& t(X) \setminus t\br{\bigcap_{i \in I} X \setminus U_i} \\
+=& t(X) \setminus \br{\bigcap_{i \in I} t\br{X \setminus U_i}}
+    && \text{\cref{lem:schematization-intersection}} \\
+=& \bigcup_{i \in I} t(X) \setminus \br{t\br{X \setminus U_i}} \\
+=& \bigcup_{i \in I} t_\Op(U_i)
+\end{align*}
+\end{proof}
+
+\begin{lem}\label{lem:schemat-ord-iso-intersection}
+In the context of \cref{thm:schematization-ord-iso},
+if $U, U'$ are open subsets of $X$,
+then $t\br{U \cap U'} = t(U) \cap t(U')$.
+\end{lem}
+\begin{proof}
+\begin{align*}
+t_\Op(U \cap U')
+=& t(X) \setminus t(X \setminus (U \cap U')) \\
+=& t(X) \setminus t((X \setminus U) \cup (X \setminus U')) \\
+=& t(X) \setminus (t(X \setminus U) \cup t(X \setminus U'))
+    && \text{\cref{lem:schematization-union}} \\
+=& (t(X) \setminus t(X \setminus U))
+    \cap (t(X) \setminus t(X \setminus U')) \\
+=& t_\Op(U) \cap t_\Op(U')
+\end{align*}
+\end{proof}
+
+\begin{thm}\label{thm:schemat-cover}
+In the context of \cref{thm:schematization-ord-iso},
+if $\set{U_i}_{i \in I}$ is an open cover of $X$, then
+$\set{t_\Op(U_i)}_{i \in I}$ is an open cover of $t(X)$.
+\end{thm}
+\begin{proof}
+Apply \cref{lem:schemat-ord-iso-union}.
+\end{proof}
+
+\begin{lem}
+In the context of \cref{cns:schematization} and \cref{lem:irred-cls-contain},
+for any closed $D \subset Y$, we have $t(f)(t(D)) \subset t(t(f)(D))$.
+\end{lem}
+\begin{proof}
+Let $D' \in t(D)$.
+Since $D' \subset D$, we have $f(D') \subset f(D)$
+and $t(f)(D') = \cls{f(D')} \subset \cls{f(D)} = t(f)(D)$.
+Then, $t(f)(D'), t(f)(D) \in t(X)$ by \cref{lem:schematization-im} and are
+hence irreducible closed subset of $X$. By \cref{cor:irred-indep}
+and \cref{cor:op-op-cls-cls}, $t(f)(D')$ is an irreducible closed
+subset of $t(f)(D)$. Thus,
+$t(f)(D') \in t(t(f)(D))$.
+\end{proof}
+
+\begin{lem}\label{lem:schematization-tf-preim}
+In the context of \cref{cns:schematization}
+and \cref{lem:schematization-im}, for any
+closed $C \subset X$, we have $t(f)^{-1}(t(C)) = t(f^{-1}(C))$.
+\end{lem}
+\begin{proof}
+Let $W \in t(f)^{-1}(t(C))$. Then, $t(f)(W) = \cls{f(W)} \in t(C)$.
+In particular, $f(W) \subset \cls{f(W)} \subset C$. This implies
+$W \subset f^{-1}(f(W)) \subset f^{-1}(C)$. Since $W \in t(X)$
+is an irreducible closed subset of $X$, it must also
+be an irreducible closed subset of $f^{-1}(C)$ by
+\cref{cor:irred-indep} and \cref{cor:op-op-cls-cls}. Thus,
+$W \in t(f^{-1}(C))$.
+
+Now, suppose $W \in t(f^{-1}(C))$. Then, $W$ is an irreducible closed
+subset of $f^{-1}(C)$ and hence $f(W) \subset C$. Since $C$
+is closed, we must have $t(f)(W) = \cls{f(W)} \subset C$.
+\end{proof}
+
+\begin{thm}\label{thm:schematization-tf-cont}
+In the context of \cref{cns:schematization}
+and \cref{lem:schematization-im}, the function
+\[
+t(f) : t(Y) \to t(X)
+\]
+is continuous.
+\end{thm}
+\begin{proof}
+Let $t(C) \in t(T)$ be a closed subset of $t(X)$ for some closed
+$C \subset X$. Then, $t(f)^{-1}(t(C)) = t(f^{-1}(C))$ by
+\cref{lem:schematization-tf-preim}, which is closed by definition, since
+$f^{-1}(C)$ is closed, as $C$ is closed and $f^{-1}$ is continuous.
+\end{proof}
+
+\begin{lem}\label{lem:schematization-fun-comp}
+In the context of \cref{cns:schematization} and \cref{lem:schematization-im},
+for two functions $Z \to[g] Y \to[f] X$, we have:
+$t(f \circ g) = t(f) \circ t(g)$.
+\end{lem}
+\begin{proof}
+For $C \in t(Z)$,
+\begin{align*}
+ & t(f \circ g)(C) \\
+=& \cls{f(g(C))} \\
+=& \cls{f(\cls{g(C)})}
+    && \text{\cref{lem:cls-im}} \\
+=& \cls{f(t(g)(C))} \\
+=& t(f)(t(g)(C))
+\end{align*}
+\end{proof}
+
+\begin{lem}\label{lem:schematization-fun-id}
+In the context of \cref{cns:schematization} and \cref{lem:schematization-im},
+we have:
+$t(\id_X) = \id_{t(X)}$.
+\end{lem}
+\begin{proof}
+For $C \in t(X)$,
+\[
+t(\id_X)(C) = \cls{C} = C \in t(X)
+\]
+\end{proof}
+
+\begin{thm}\label{thm:schematization-fun-nat}
+The mapping:
+\[\begin{array}{ccccc}
+t &:& \Top &\to& \Top \\
+  &:& X &\mapsto& t(X) \\
+  &:& (f : Y \to X) &\mapsto& (t(f) : t(Y) \to t(X))
+\end{array}\]
+from \cref{cns:schematization} is a functor with a
+natural transformation:
+\[
+\alpha : \id_\Top \To t
+\]
+whose components are the $\alpha_X$.
+\end{thm}
+\begin{proof}
+Apply \cref{thm:schematization-tf-cont} along with lemmas
+\ref{lem:schematization-fun-comp} and
+\ref{lem:schematization-fun-id}
+to deduce that $t$ is a functor $\Top \to \Top$.
+Then, apply \cref{thm:schematization-alpha-cont} and
+\cref{lem:schematization-nat}
+to deduce that $\alpha$ is natural.
+\end{proof}
+
+\begin{thm}\label{thm:schemat-fun-faithful}
+In the context of \cref{thm:schematization-fun-nat}, if $X$
+is Kolmogorov then the function $t : \Top(Y, X) \to \Top(t(Y), t(X))$ is
+injective. In particular, the functor $t : \Top \to \Top$
+restricted to the full subcategory of $\Top$ consisting of the Kolmogorov
+($T_0$) spaces, is faithful.
+\end{thm}
+\begin{proof}
+Let $f, g : Y \to X$ be two continuous maps such that $t(f) = t(g)$.
+The naturality of $\alpha$ shows that for any $y \in Y$:
+\[
+\alpha_X(f(y)) = t(f)(\alpha_Y(y)) = t(g)(\alpha_Y(y)) = \alpha_X(g(y))
+\]
+Then, since $X$ is Kolmogorov, $\alpha_X$ is injective by
+\cref{lem:schematization-alpha-inj}. This means $f(y) = g(y)$.
+Since $y$ was arbitrary, we have $f = g$.
+\end{proof}
+
+\begin{defn}
+We will call the functor $t : \Top \to \Top$ of
+\cref{thm:schematization-fun-nat} the schematization functor, and
+the natural transformation $\alpha : \id_\Top \To t$,
+the natural immersion into schematization.
+\end{defn}
+
+\begin{lem}\label{lem:schemat-open}
+In the context of \cref{thm:schematization-ord-iso},
+if $\iota : U \hto X$ is the inclusion of a non-empty open subset,
+$t(\iota) : t(U) \to t(X)$ restricts to a map
+$t(\iota) : t(U) \to t_\Op(U)$, which is also continuous.
+\end{lem}
+\begin{proof}
+Let $C \in t(U)$. Then, $t(\iota)(C) = \cls{\iota(C)} = \cls{C}$, where
+the closure is taken in $X$. Since, $C$ is irreducible in $U$, $C$ must
+be non-empty, and hence $\cls{C} \cap U$ must also be non-empty since it contains $C \cap U = C \neq \varnothing$. Thus,
+$t(\iota)(C) = \cls{C} \not\in t(X \setminus U)$ but it is in $t(X)$
+by \cref{lem:schematization-im}.
+Hence, $t(\iota)(C) \in t(X) \setminus t(X \setminus U) = t_\Op(U)$.
+Of course, codomain restrictions of continuous maps are again continuous.
+\end{proof}
+
+\begin{lem}\label{lem:schemat-open-int}
+In the context of \cref{thm:schematization-ord-iso},
+for a non-empty open $U \subset X$, the function
+\[
+- \cap U : \Cl(X) \to \Cl(U) : C \mapsto C \cap U
+\]
+restricts to a function $- \cap U : t_\Op(U) \to t(U)$.
+\end{lem}
+\begin{proof}
+Let $C \in t_\Op(U)$ so that $C \in t(X)$ but not in $t(X \setminus U)$.
+In particular, $C \cap U \neq \varnothing$ and is closed in $U$.
+Then, $C \cap U$ is a non-empty open subset of the irreducible set $C$
+and hence must be irreducible in $C$ by \cref{lem:open-of-irred}.
+By \cref{cor:irred-indep}, it must be irreducible in $X$.
+By \cref{cor:irred-indep} in the reverse direction, it must be irreducible
+in $U$. Thus, $C \cap U \subset t(U)$.
+\end{proof}
+
+\begin{lem}\label{lem:schemat-open-inv}
+The functions $t(\iota) : t(U) \leftrightarrows t_\Op(U) : - \cap U$
+\cref{lem:schemat-open} and \cref{lem:schemat-open-int}
+are inverses to each other.
+\end{lem}
+\begin{proof}
+For any $C \in t(U)$, $t(\iota(C)) \cap U = \cls{C} \cap U = C$ by
+\cref{lem:cls-int-id}.
+
+Now, suppose $C \in t_\Op(U)$. Then, $t(\iota)(C \cap U) = \cls{C \cap U}$.
+However, $C = \cls{C \cap U} \cup (C \setminus (C \cap U))$,
+where the first operand of the union is a closed subset of $C$ by
+\cref{cor:op-op-cls-cls} and the second operand is a closed subset of $C$
+since $C \cap U$ is open in $C$. Since $C \in t_\Op(U) \subset t(X)$, $C$
+is irreducible and hence, we must have $C = \cls{C \cap U}$ or
+$C = C \setminus (C \cap U)$. In the latter case, $C \cap U$ must be
+empty since $U$ is non-empty by hypothesis and $C \in t(X)$ is non-empty by
+irreducibility. However, this means $C \subset X \setminus U$ in which
+case $C$ is also irreducible and closed in $X \setminus U$ by
+\cref{cor:irred-indep} and \cref{cor:op-op-cls-cls}. This contradicts
+the assumption that $C \in t_\Op(U) = t(X) \setminus t(X \setminus U)$.
+Hence, we must have $C = \cls{C \cap U} = t(\iota)(C \cap U)$.
+\end{proof}
+
+\begin{lem}
+The function $- \cap U : t_\Op(U) \to t(U)$
+of \cref{lem:schemat-open-int} is continuous.
+\end{lem}
+\begin{proof}
+A closed subset of $t(U)$ is of the form $t(C)$ for some closed subset
+$C \subset U$. We observe that
+$(- \cap U)^{-1}(t(C)) = t(\iota)(C) \subset t(t(\iota)(C))$
+by \cref{lem:schemat-open-inv} and \cref{lem:schematization-im}.
+Now, consider $D \in t\br{t(\iota)(C)}$. Then,
+$D \subset t(\iota)(C) = \cls{C}$, and $D \cap U \subset \cls{C} \cap U = C$
+by \cref{lem:cls-int-id}. However, $D \cap U \in t(U)$ by
+\cref{lem:schemat-open-int} and hence $D \cap U \in t(C)$ by
+\cref{cor:irred-indep}. That is, $D in (- \cap U)^{-1}(t(C))$.
+Thus, we have shown that $(- \cap U)^{-1}(t(C)) \subset t(t(\iota)(C))$.
+Hence, $(- \cap U)^{-1}(t(C)) = t(t(\iota)(C))$.
+\end{proof}
+
+\begin{thm}\label{thm:schemat-open-homeo}
+The functions $t(\iota) : t(U) \leftrightarrows t_\Op(U) : - \cap U$
+are continuous inverses of each other and hence each is a homeomorphism.
+\end{thm}

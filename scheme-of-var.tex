@@ -1,0 +1,471 @@
+
+\subsection{The Scheme of a Variety}
+
+For all results, we will consider an algebraically closed field
+$k$. We will then follow definitions from \cite{HartAG}.
+
+\begin{lem}\label{lem:affine-var-to-scheme}
+Let $U$ be an affine $k$--variety; $I(U)$, its ideal, and
+$A = A(U) = k[x_1, \dots, x_n]/I(U)$,
+its coordinate ring. We then have a function:
+\[
+\beta_U : t(U) \to \Spec(A)
+        : C \mapsto q(I(C))
+\]
+where $I(C) = \set[f \in {k[x_1, \dots, x_n]}]{\forall c \in C, f(c) = 0}$ is
+the ideal of $C$ and $q : k[x_1, \dots, x_n] \to A$ is the quotient map.
+For a closed subset $D \subset U$, we have:
+\[
+\beta_U(t(D)) = V(q(I(D))) = \set[P \in \Spec(A)]{q(I(D)) \subset P}
+\]
+Furthermore, we have a function:
+\[
+\gamma_U : \Spec(A) \to t(U) : P \mapsto Z(q^{-1}(P))
+\]
+where $Z(P) = \set[x \in k^n]{\forall f \in P, f(x) = 0}$.
+For any ideal $K \subset A$, we have:
+\[
+\gamma_U(V(K)) = t(Z(q^{-1}(K)))
+\]
+Finally, $\beta_U$ and $\gamma_U$ are inverses to each other.
+\end{lem}
+\begin{proof}
+We first check that the map $\beta_U$ is well defined.
+Let $R = k[x_1, \dots, x_n]$.
+Given $C \in t(U)$, $I(C) \supset I(U)$ since $I(U)$ is the set of all
+$f \in R$ such that for all $x \in U$, $f(x) = 0$.
+Then, $I(C)$ is prime by \cite[Cor. I.1.4]{HartAG} because $C$ is irreducible.
+Then, $I(C)/I$ is prime in $A$ by \cref{thm:correspondence-cring}.
+
+Let $C \in t(D)$. Then, $\beta_U(C) = q(I(C))$. Since $C \subset D$,
+$I(D) \subset I(C)$. Furthermore, $I(C)$ is prime by \cite[Cor. I.1.4]{HartAG}.
+Then, $q(I(C))$ is prime and $q(I(D)) \subset q(I(C))$ by
+\cref{thm:correspondence-cring}. Thus, $\beta_U(C) = q(I(C)) \in V(q(I(D)))$.
+
+Now, suppose $P \in V(q(I(D)))$. Then, $P = q(q^{-1}(P))$ but since
+$q^{-1}(P)$ is prime and contains $q^{-1}(q(I(D))) = I(D)$,
+$Z(q^{-1}(P))$ is an irreducible subset of $Z(I(D)) = D$
+by \cite[Cor. I.1.4]{HartAG}, and, of course, $Z(q^{-1}(P))$ is closed
+in $k^n$ and hence also in $D$ by the definition of Zariski topology.
+Hence, then $\beta_U(Z(q^{-1}(P))) = q(I(Z(q^{-1}(P)))) = q(q^{-1}(P)) = P$.
+Thus, we have shown that $P \in \beta_U(t(D))$. Therefore,
+$\beta_U(t(D)) = V(q(I(D)))$.
+
+Now, we show that $\gamma_U$ is well defined. Since $P$ is prime,
+so is $q^{-1}(P)$ by \cref{thm:correspondence-cring}, and
+$Z(q^{-1}(P))$ is an irreducible closed subset of $k^n$
+by \cite[Cor. I.1.4]{HartAG}. However, $I(U) \subset q^{-1}(P)$
+by \cref{thm:correspondence-cring} so that $Z(q^{-1}(P)) \subset Z(I(U)) = U$.
+Then, by \cref{cor:irred-indep} and \cref{cor:op-op-cls-cls},
+$Z(q^{-1}(P)) \in t(U)$.
+
+Let $P \in V(K)$. Then, $K \subset P$ implies $q^{-1}(K) \subset q^{-1}(P)$
+which, in turn, implies $Z(q^{-1}(P)) \subset Z(q^{-1}(K))$. However,
+since $Z(q^{-1}(P))$, it is irreducible and closed in
+$U$ which by two applications of \cref{cor:irred-indep} and
+\cref{cor:op-op-cls-cls}, shows that $Z(q^{-1}(P))$ is
+irreducible and closed in $Z(q^{-1}(K))$. Thus,
+$\gamma_U(P) = Z(q^{-1}(P)) \in t(Z(q^{-1}(K)))$.
+
+Now, let $C \in t(Z(q^{-1}(K)))$. Then, $C$ is an irreducible
+closed subset of $Z(q^{-1}(K))$ which, by \cref{cor:irred-indep}
+and \cref{cor:op-op-cls-cls}, implies that $C$ is an irreducible
+closed subset of $k^n$ and hence, $I(C)$ is prime, by
+\cite[Cor. I.1.4]{HartAG}. Next, $q^{-1}(K) \subset I(C)$,
+because if $f \in k[x_1, \dots, x_n]$ vanishes on $Z(q^{-1}(K))$,
+it vanishes on every subset thereof.
+Then, by \cref{thm:correspondence-cring},
+$K = q(q^{-1}(K)) \subset q(I(C))$ and $q(I(C))$ is prime in $A$, so that
+$q(I(C)) \in V(K)$. Next, $\gamma_U(q(I(C))) = Z(q^{-1}(q(I(C)))) = C$.
+Thus, $C \in \gamma_U(V(K))$.
+
+We finally observe that, by \cite[Cor. I.1.4]{HartAG} and
+\cref{thm:correspondence-cring},
+\[
+\beta_U(\gamma_U(P)) = q(I(Z(q^{-1}(P)))) = P
+\]
+and
+\[
+\gamma_U(\beta_U(C)) = Z(q^{-1}(q(I(C)))) = C
+\]
+\end{proof}
+
+\begin{cor}\label{cor:schemat-affine-var-homeo}
+The maps $\beta_U$ and $\gamma_U$ of \cref{lem:affine-var-to-scheme}
+are continuous inverses of each other and hence, we have a homeomorphism:
+\[
+\beta_U : t(U) \stackrel{\cong}{\leftrightarrows} \Spec(A) : \gamma_U
+\]
+\end{cor}
+\begin{proof}
+By \cref{lem:affine-var-to-scheme}, it suffices to observe that
+both maps take closed sets to closed sets.
+\end{proof}
+
+\begin{lem}\label{lem:affine-var-T1}
+Every affine variety over $k$ is $T_1$.
+\end{lem}
+\begin{proof}
+Let $U$ be an affine $k$--variety such that $U$ is an irreducible
+Zariski closed subset of $k^n$. That is, $U = Z(I(U))$ for some
+ideal $I(U) \subset k[x_1, \dots, x_n]$. Then, for any
+$a = (a_1, \dots, a_n) \in U \subset k^n$,
+$\set{a} = Z((x_1 - a_1, \dots, x_n - a_n))$ which is closed
+in $k^n$.
+Thus, $\set{a}$ is a closed subset of $U$ as well by \cref{cor:op-op-cls-cls}.
+\end{proof}
+
+\begin{lem}\label{lem:max-neighbour}
+Let $R = k[x_1, \dots, x_n]$; $I \subset R$, an ideal, and $A = R/I$.
+For every $P \in \Spec(A)$, and every
+open neighbourhood $U$ of $P$ in $\Spec(A)$,
+there is an $a \in k^n$ such that $M = q(\ker{\ev_a}) \subset A$ is a
+maximal ideal, $M \in U$ and $P \subset M$.
+\end{lem}
+\begin{proof}
+Since $U$ is open, there is some ideal $K \subset A$ such that
+$U = \Spec(A) \setminus V(K)$. Then, $P \in U$ implies that
+$P \not\supset K$. This means that there exists $f + I \in K$ such that
+$f + I \not\in P$.
+Let $q : R \to A$ be the quotient map.
+If $f$ is identically zero on $Z(q^{-1}(P))$, then by
+\cite[Cor. I.1.4]{HartAG},
+\begin{align*}
+        & Z(q^{-1}(P)) \subset Z(q^{-1}((f + I))) \\
+\implies& q^{-1}(P) \supset I(Z(q^{-1}((f + I)))) \\
+\implies& q^{-1}(P) \supset (q^{-1}(f + I)) \supset (f)
+\end{align*}
+so that $f \in q^{-1}(P) \implies f + I = q(f) \in P$, contradicting
+the hypothesis that $P \not\in V(K)$. Thus, there exists $a \in Z(q^{-1}(P))$
+such that $f(a) \neq 0 \iff f \not\in \ker{\ev_a}$. Since $q(f) = f + I \in K$,
+$f \in q^{-1}K$ which means that
+$q^{-1}(K) \not\subset \ker{\ev_a}$ and, by \cref{thm:correspondence-cring},
+$K \not\subset q(\ker{\ev_a})$. That is,
+$m_a = q(\ker{\ev_a}) \in U = \Spec(A) \setminus V(K)$.
+However, since $a \in Z(q^{-1}(P))$,
+$\ker{\ev_a} = I(\set{a}) \supset q^{-1}(P)$ which implies, by
+\cref{thm:correspondence-cring} again, that $q(\ker{\ev_a})$ contains
+$P$ and is maximal, since $\ker{\ev_a}$ is maximal. We can thus
+take $M = q(\ker{\ev_a})$.
+\end{proof}
+
+\begin{lem}\label{lem:schemat-reg-fun}
+Let $U$ be an affine $k$--variety with coordinate ring
+$A = A(U) = R/I(U) = R/I$, where $R = k[x_1, \dots, x_n]$ and $I(U) = I$
+is the ideal of $U$. Let $O_U$ be the sheaf of regular functions on $U$.
+Then, we have an isomorphism of sheaves of rings:
+\[
+\beta_U^\sharp : O_{\Spec(A)} \to \beta_{U, *}(\alpha_{U, *}(O_U))
+    : s \mapsto (a \mapsto s(\beta_U(\alpha_U(a)))(a))
+\]
+where $s(\beta_U(\alpha_U(a)))$ is an element $(f + I)/(g + I)$ of
+$A_{\beta_U(\alpha_U(a))}$
+assigned by the section $s$, for some polynomials $f, g \in R$, and
+$s(\beta_U(\alpha_U(a)))(a)$ is an element of $k$ given by $f(a)/g(a)$.
+In addition, for each $C \in t(U)$,
+\[
+\beta_{U, C}^\sharp : O_{\Spec(A), \beta_U(C)}
+\to (\alpha_{U, *}(O_U))_C
+\]
+is a local homomorphism.
+\end{lem}
+\begin{proof}
+Let $W$ be an open subset of $\Spec(A)$ and $s \in O_{\Spec(A)}(W)$.
+Then, we have an open cover $\set{W_i}_{i \in J}$ of $W$ and
+$f_i, g_i \in R$ for each $i \in J$, such that for each $P \in W_i$,
+$g_i + I \not\in P$ and $s(P) = (f_i + I)/(g_i + I)$. Now, let
+$a \in \alpha_{U}^{-1}(\beta_U^{-1}(W))$. Then, $\beta_U(\alpha_U(a)) \in W$
+and $\cls{\set{a}} = \set{a}$ by \cref{lem:affine-var-T1}. This shows that
+$\beta_U(\alpha_U(a)) = \beta_U(\cls{\set{a}}) = \beta_U(\set{a})
+= q(I(\set{a}))$ where $q : R \to A$ is the quotient map.
+However, $I(\set{a})$ is precisely $Z((x_1 - a_1, \dots, x_n - a_n))$,
+the maximal ideal of $R$ corresponding to $a$ by \cite[Cor. I.1.4]{HartAG},
+and $q(I(\set{x}))$ is the maximal ideal $m_a$ of $A$ corresponding
+to $a$ by \cref{thm:correspondence-cring}. Since
+$m_a = \beta_U(\alpha_U(a)) \in W$, we must have $m_a \in W_i$ for some
+$i \in J$ so that $g_i + I \not\in m_a \iff g_i(a) \neq 0$. Thus,
+$f_i(a)/g_i(a) \in k$. Taking $B = k$, $f = \ev_a$
+$I = I$ and $J = \ker{\ev_a} = I(\set{a})$ in \cref{lem:loc-quot-ev},
+we see that $f_i(a)/g_i(a) = f(a)/g(a)$ whenever
+$(f_i + I)/(g_i + I) = (f + I)/(g + I)$. This, in particular, shows
+that for any other $j \in J$, with $m_a \in W_j$,
+$f_j(a)/g_j(a) = f_i(a)/g_i(a)$ for
+$(f_j + I)/(g_j + I) = s(m_a) = (f_i + I)/(g_i + I)$.
+Thus, $\beta_{U, W}^\sharp(s) : a \mapsto s(m_a)(a)$ is a well-defined function
+of sets $\alpha_U^{-1}(\beta_U^{-1}(W)) \to k$. Then,
+since the $W_i$ cover $W$, we have that the
+$\alpha_U^{-1}(\beta_U^{-1}(W_i))$ cover $\alpha_U^{-1}(\beta_U^{-1}(W))$.
+For all $i \in J, a \in \alpha_U^{-1}(\beta_U^{-1}(W_i))$,
+$\beta_{U, W}^\sharp(s)(a) = f_i(a)/g_i(a)$. Hence,
+$\beta_{U, W}^{\sharp}(s)$ is a regular function.
+
+We would like to see that $\beta_{U, W}^{-1}$ is a ring homomorphism.
+For $u, v \in O_{\Spec(A)}(W)$, $a \in \alpha_U^{-1}(\beta_U^{-1}(W))$,
+$u(m_a) = (f_i + I)/(g_i + I), v(m_a) = (f'_i + I)/(g'_i +I)$
+for some polynomials $f_i, g_i, f'_i, g'_i \in R$.
+By \cref{lem:loc-quot-ev} again, we observe that:
+\begin{align*}
+ & \beta_{U, W}^\sharp(u + v)(a) \\
+=& ((u + v)(m_a))(a) \\
+=& (f_i/g_i + f'_i/g'_i)(a) \\
+=& f_i(a)/g_i(a) + f'_i(a)/g'_i(a) \\
+=& u(m_a)(a) + v(m_a)(a) \\
+=& \beta_{U, W}^\sharp(u)(a) + \beta_{U, W}^\sharp(v)(a) \\
+=& (\beta_{U, W}^\sharp + \beta_{U, W}^\sharp(v))(a)
+\end{align*}
+The preservation of multiplication, $0$ and $1$ can be shown by
+similar point-wise identities.
+
+We would then like to see that $\beta_U^\sharp$ is natural in $W$.
+So, suppose $W' \subset W$. Then, the $W'_i = W_i \cap W'$
+cover $W'$ and for $a \in \alpha_U^{-1}(\beta_U^{-1}(W'_i))$, we have:
+\[
+\beta_{U, W'}^\sharp(s|_{W'})(a) = s|_{W'}(m_a)(a) = s(m_a)(a)
+= f_i(a)/g_i(a)
+\]
+which is also the value of the regular function
+$\beta_{U, W}^\sharp(s)|_{\alpha_U^{-1}(\beta_U^{-1}(W'))}$.
+
+Now, let $s(\beta_U(\alpha_U(a)))(a) = f(a)/g(a) = 0$ for
+all $a \in \alpha_U^{-1}(\beta_U^{-1}(W))$. Then, $f_i/g_i$, and hence
+$f_i$, is zero on all of $\alpha_U^{-1}(\beta_U^{-1}(W_i))$.
+Since $\alpha_U^{-1}(\beta_U^{-1}(W_i))$ is open in $U$, it must also
+be dense in $U$ by \cref{lem:open-of-irred}, since $U$ is irreducible.
+Then, $f_i$ is a Zariski continuous function $U \to k$ by
+\cref{lem:poly-Zar-cont}, and, hence, we must have
+$f_i$ is zero on $U$, by \cref{lem:const-cont-fun-dense},
+as it is zero on the dense subset
+$\alpha_U^{-1}(\beta_U^{-1}(W_i)) \subset U$.
+Thus, $f_i \in I$ and this means $(f_i + I)/(g_i + I)$
+is the zero element of $A_P$ for each $P \in W_i$.
+This shows that $s = 0$. Since $s$ was arbitrary, this shows that
+$\beta^\sharp_{U, W}$ has a zero kernel and, hence, must be injective.
+
+For surjectivity, take any regular function
+$f : \alpha_U^{-1}(\beta_U^{-1}(W)) \to k$. Then, cover
+$\alpha_U^{-1}(\beta_U^{-1})(W)$ with open subsets
+$W_i', i \in I$ such that for each $i \in I$, there exist
+$f_i, g_i \in R$ with $g_i(a) \neq 0$ for all $a \in W_i'$ and
+$f|_{W_i'} = f_i/g_i$. By \cref{thm:schemat-cover}, we
+have a cover $t_\Op(W_i'), i \in I$ for $\beta_U^{-1}(W)$
+which, in turn, gives an open cover
+$W_i := \beta_U^{-1}(t_\Op(W_i')), i \in I$
+of $W$ since $\beta_U$ is a homeomorphism by
+\cref{cor:schemat-affine-var-homeo}. For any $P \in W_i$, we
+can show that $g_i + I \not\in P$. By \cref{lem:max-neighbour}, there exists
+$a \in k^n$ with $M = q(\ker{\ev_a}) \supset P$, $M \in W_i$.
+Then, $\ker{\ev_a} = q^{-1}(M) \supset q^{-1}(P)$ and
+$\set{a} = Z(q^{-1}(M)) = Z(\ker{\ev_a}) \in Z(q^{-1}(W_i))
+= \gamma_U(W_i) = \beta_U^{-1}(W_i)$. Then,
+$a = \alpha_U^{-1}(\set{a}) \in \alpha_U^{-1}(\beta_U^{-1}(W_i'))
+= W_i'$, so that $g_i(a) \neq 0$. This means, $g_i \not\in \ker{\ev_a}$
+which implies that $g_i + I = q(g_i) \not\in q(\ker{\ev_a})$ and hence,
+$g_i + I \not\in P$ since $P \subset q(\ker{\ev_a})$. We can then define
+$s(P) = (f_i + I)/(g_i + I) \in A_P$. We need to show that $s(P)$
+does not depend on the choice of $i \in I$. If $P \in W_i \cap W_j$,
+then we observe that on $W_i' \cap W_j'$,
+$f_i/g_i = f|_{W_i' \cap W_j'} = f_j/g_j$ so that $f_ig_j - f_jg_i = 0$
+on $W_i' \cap W_j'$. Hence, $f_ig_j - f_jg_i$ is zero on $U$ by
+\cref{lem:const-cont-fun-dense} and is hence in $I$. This shows
+that $(f_i + I)/(g_i + I)$ and $(f_j + I)/(g_j + I)$ are equal as
+elements of $A_P$.
+By construction, at each $P \in W_i$,
+$s(P)$ is given by the same $(f_i + I)/(g_i + I)$, and hence,
+$s \in O_{\Spec(A)}(W)$. Finally, we see that
+$\beta^\sharp_{U, W}(s) = f$.
+
+To see that the localization $\beta^\sharp_{\beta_U(C)}$ is a local
+homomorphism follows from the fact that it is an isomorphism, and any
+isomorphism of local rings is a local homomorphism.
+\end{proof}
+
+\begin{lem}\label{lem:schemat-affine-var-local-ring}
+Let $V$ be an affine $k$--variety with coordinate ring
+$A = R/I$ where $R = k[x_1, \dots, x_n]$ and $I \subset R$ is a prime ideal
+with $V = Z(I) \subset k^n$.
+Let $C \in t(V)$.
+Then, we have:
+\[
+(\alpha_{V_*}(O_V))_C = \colim_{C \cap W \neq \varnothing} O_V(W)
+\]
+where the colimit is taken over the poset of open subsets of $V$
+that have non-empty intersection with $C$.
+Furthermore, the set
+\[
+M_C := \set[{[(W, s)]}]{\exists x \in C \cap W, s(x) = 0}
+\]
+is the unique maximal ideal of this stalk.
+\end{lem}
+\begin{proof}
+By \cref{thm:schematization-ord-iso} and \cref{lem:schemat-open-membership},
+we have an order isomorphism between the poset of open subsets of $t(V)$
+containing the point $C$ and the poset of open subsets of $V$ which have
+non-empty intersection with $C$, and the first claim follows. More
+explicitly, this stalk is the quotient of the set of all pairs
+$(W, s)$, for an open $W \subset V$ with $C \cap W \neq \varnothing$ an
+and $s \in O_V(W)$ by the equivalence relation $(W, s) \sim (W', s')$
+if and only if there exists $W'' \subset W \cap W'$ such that
+$s|_{W''} = s'|_{W''}$. Denote such an equivalence class as $[W, s]$
+for a choice of representative $(W, s)$. By the definition of colimits,
+the ring structure is given by operations
+$[W, s] + [W', s'] = [W \cap W', s + s']$,
+$[W, s] \cdot [W', s'] = [W \cap W', s \cdot s']$, and units
+$[W, 0], [W, 1]$, where $0$ and $1$ are the constant regular functions
+on $W$.
+
+From the description of operations, it is straightforward to verify
+that $M_C$ is an ideal, with the added observation that the operations
+on regular functions are point-wise. If $[W, s] \not\in M_C$,
+then, for all $x \in C \cap W$, $s(x) \neq 0$ and has a multiplicative
+inverse $t(x) = 1/s(x)$ on $W$. This shows that the stalk quotiented
+by $M_C$ is a field and hence $M_C$ is maximal. Then, suppose
+$K$ is another maximal ideal of the stalk. Let $[W, s] \in K$. Then,
+if $[W, s] \not\in M_C$, $[W, s]$ is a unit as we saw previously.
+This means, $K$ is the stalk, which contradicts the hypothesis that
+it is an ideal. Thus, $K \subset M_C$ and by maximality of $K$,
+we must have $K = M_C$.
+\end{proof}
+
+\begin{thm}\label{thm:scheme-of-var}
+Let $W, V$ be a $k$--varieties;
+$O_W, O_V$, their sheaves of regular functions and $f : W \to V$
+a morphism of varieties with $f^\sharp : O_V \to f_*(O_W)$ the map
+that sends a regular function $s : V' \to k$ for some open subset
+$V' \subset V$ to the regular function $s \circ f : f^{-1}(V') \to k$.
+Then, in the context of \cref{cns:schematization-ringed-sp},
+the following hold
+\begin{enumerate}
+\item $t(V, O_V)$ is a $k$--scheme.
+\item $t(f, f^\sharp)$ is a morphism of $k$--schemes.
+\item The functor
+$t : \mathrm{RingedSp} \to \mathrm{RingedSp}$ restricted to
+the category of $k$--varieties (viewed as ringed spaces with their
+sheaves of regular functions) is a fully faithful functor
+from $k$--varieties to $\Sch_{/k}$.
+\item There is a natural transformation
+$\alpha : \id_{\mathrm{RingedSp}} \to t$ such that for each $k$--variety
+$V$, the map of topological spaces underlying
+$\alpha_{V, O_V} : (V, O_V) \to t(V, O_V)$
+is a homeomorphism onto the set of closed points of $t(V)$.
+\end{enumerate}
+\end{thm}
+\begin{proof}
+(i)
+$V$ has a cover by open affine subvarieties $U_i$ by \cite[\S I.4.3]{HartAG}.
+Consider the open subsets $t_\Op(U_i)$ of $t(V)$ where
+$t_\Op$ is as in \cref{thm:schematization-ord-iso}.
+These cover $t(V)$ by \cref{thm:schemat-cover}. Hence,
+it suffices to show that each $(t_\Op(U_i), \alpha_{V, *}(O_V)|_{U_i})$
+is an affine scheme.
+
+However, we have shown in \cref{thm:schemat-open-homeo} that
+for each inclusion $\iota_i : U_i \to V$, the map
+$t(\iota_i) : t(U_i) \to t(V)$ is a homeomorphism onto
+$t_\Op(U_i) \subset t(V)$.
+For any open $W \subset t_\Op(U_i)$, we observe that
+$\alpha_{V}^{-1}(W) \subset U_i$ by \cref{thm:schematization-ord-iso}
+so that $\alpha_V^{-1}(W) = \iota_i^{-1}(\alpha_{V}^{-1}(W))$. Then,
+by \cref{lem:schematization-nat}, we have:
+\begin{align*}
+\alpha_V^{-1}(W)
+=& \iota_i^{-1}(\alpha_V^{-1}(W)) \\
+=& (\alpha_V \circ \iota_i)^{-1}(W) \\
+=& (t(\iota_i) \circ \alpha_{U_i})^{-1}(W) \\
+=& \alpha_{U_i}^{-1}(t(\iota_i)^{-1}(W)
+\end{align*}
+Thus, we have a strict equality of sets:
+\begin{align*}
+ & \alpha_{V, *}(O_V)|_{t_\Op(U_i)}(W) \\
+=& \alpha_{V, *}(O_V)(W) \\
+=& O_V(\alpha_{V}^{-1}(W)) \\
+=& O_V(\alpha_{U_i}^{-1}(t(\iota_i)^{-1}(W))) \\
+=& O_V|_{U_i}(\alpha_{U_i}^{-1}(t(\iota_i)^{-1}(W))) \\
+=& O_{U_i}(\alpha_{U_i}^{-1}(t(\iota_i)^{-1}(W))) \\
+=& \alpha_{U_i, *}(O_{U_i})(t(\iota_i)^{-1}(W)) \\
+=& t(\iota_i)_*(\alpha_{U_i, *}(O_{U_i}))(W)
+\end{align*}
+Therefore, we have an isomorphism of ringed spaces:
+\[
+(t(\iota), \id) : (t(U_i), \alpha_{U_i, *}(O_{U_i})) \to
+                    (t_\Op(U_i), \alpha_{V, *}(O_V)|_{t_\Op(U_i)})
+\]
+We can then see that
+$t(U_i, O_{U_i}) = (t(U_i), \alpha_{U_i, *}(O_{U_i}))$ is an affine scheme
+by \cref{cor:schemat-affine-var-homeo}, \cref{lem:schemat-reg-fun}
+and \cref{lem:set-sp-iso}.
+We then need to produce a map $t(V, O_V) \to \Spec(k)$.
+For this, we observe that there is a unique map of topological spaces
+$f : t(V) \to |\Spec(k)| = \mathrm{pt}$, and a unique map
+\[
+f^\sharp_{\varnothing} : O_{\Spec(k)}(\varnothing) = \set{0}
+\to \set{0} = f_*(\alpha_*(O_V))(\varnothing)
+\]
+We need only provide a map
+\[
+f^\sharp_\mathrm{pt} :
+k = O_{\Spec(k)}(\mathrm{pt}) \to f_*(\alpha_*(O_V))(\mathrm{pt})
+= O_V(\alpha^{-1}(f^{-1}(\mathrm{pt}))) = O_V(V)
+\]
+and this is simply the map giving $O_V(V)$ the structure of a $k$--algebra,
+that is the map sending an element $a \in k$ to the constant regular
+function on $V$ valued at $a$.
+
+(ii)
+We have to show that $t(f, f^\sharp)$ is a morphism of locally
+ringed spaces over $\Spec(k)$. First, we show that it is a morphism
+of ringed spaces over $\Spec(k)$. For this, we have the show that the
+map
+\[
+k = O_{\Spec(k)}(\mathrm{pt}) \to \alpha_{W, *}(O_W)(t(W)) = O_W(W)
+\]
+is equal to the map:
+\begin{align*}
+   & k = O_{\Spec(k)}(\mathrm{pt}) \\
+\to& \alpha_{V, *}(O_V)(t(V)) = O_V(V) \\
+\to& t(f)_*(\alpha_{W, *}(O_W))(t(V)) = O_W(W)
+\end{align*}
+This follows from the observation that the constant regular function
+on $V$ valued at some $a \in k$ precomposed with $f$ is the constant
+regular function valued at $a$ on $W$.
+Now, it suffices to show that, for each $C \in t(W)$, the map
+\[
+\alpha_{V, *}(f^\sharp)_{t(f)(C)} :
+    \alpha_{V, *}(O_V)_{t(f)(C)} \to
+    t(f)_*(\alpha_{W, *}(O_W))_{t(f)(C)} = \alpha_{W, *}(O_W)_{C}
+\]
+is a map of local rings.
+By \cref{lem:schemat-affine-var-local-ring}, we consider
+$[U, s] \in M_{t(f)(C)} \subset \alpha_{V, *}(O_V)_{t(f)(C)}$.
+By definition of colimits and the map of stalks,
+\[
+\alpha_{V, *}(f^\sharp)_C([U, s]) = [U, \alpha_{V, *}(f^\sharp)(s)]
+\]
+However, the section $\alpha_{V, *}(f^\sharp)(s) \in \alpha_{V, *}(f^*(O_W))(U)$
+is equal to the section
+\[
+s \circ f \in O_W(f^{-1}(\alpha_{V}^{-1}(U)))
+\]
+However, there exists $v \in t(f)(C)$ such that $s(v) \neq 0$.
+If $s(f(u)) = 0$ for all $u \in f^{-1}(\alpha_V^{-1}(U))$,
+then by the continuity of $s \circ f$, \cref{lem:cont-lim-pt} and
+\cref{lem:affine-var-T1}, $s(u)$ must be zero since
+$v \in t(f)(C) = \cls{f(C)}$,
+which is a contradiction. Hence, there must be a $u \in C$ such that
+$(s \circ f)(u) \neq 0$. This means,
+\[
+[f^{-1}(\alpha_{V}^{-1}(U)), s \circ f] \in M_C \subset \alpha_{W, *}(O_W)_C
+\]
+This shows that $\alpha_{V, *}(f^\sharp)_{t(f)(C)}$ is a map of local rings.
+
+(iii)
+Combine (i) and (ii) with
+\cref{lem:affine-var-T1},
+\cref{lem:open-cov-T1},
+\cref{thm:schemat-ringed-sp-faithful},
+and the observation that $T_1$ spaces are $T_0$, to obtain
+that the functor is faithful. \todo[inline]{Show that it is full}
+
+(iv)
+Combine \cref{thm:schematization-fun-nat} with
+\cref{thm:schematization-alpha-cont}.
+\end{proof}

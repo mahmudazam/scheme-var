@@ -1,0 +1,108 @@
+
+\subsection{Basic Topology}
+
+\begin{cor}\label{cor:op-op-cls-cls}
+Let $X$ be a topological spaces and $V \subset U \subset X$.
+Then, if $U$ is open, then
+$V$ is open in $U$ if and only if $V$ is open in
+$X$. Likewise, if $U$ is closed, then
+$V$ is closed in $U$ if and only if $V$
+is closed in $X$.
+\end{cor}
+\begin{proof}
+Suppose $U$ is open. Then,
+$V$ is open in $U$ if and only if there exists an open
+$V' \subset X$ such that $V' \cap U = V$. This implies
+$V$ is open in $X$ as it is an intersection of two open
+sets. If $V$ is open in $X$, then $V = V \cap U$
+is an intersection of two open subsets of $U$ and hence
+is open in $U$. When $U$ is closed, the proof is identical
+with the word ``open'' replaced by ``closed''.
+\end{proof}
+
+\begin{lem}\label{lem:cls-int-id}
+For any topological space $X$, any $U \subset X$ and
+a closed $C \subset U$, $\cls{C} \cap U = C$, where the closure is taken
+in $X$.
+\end{lem}
+\begin{proof}
+Since $C \subset \cls{C}$
+and $C \subset U$, we have $C \subset \cls{C} \cap U$.
+Then, $C$ being closed in $U$ means there exists a closed $C' \subset X$
+such that $C = C' \cap U$. In particular, $C'$ is a closed set of $X$
+containing $C$ so that $\cls{C} \subset C'$ which implies that
+$\cls{C} \cap U \subset C' \cap U = C$. Thus, $\cls{C} \cap U = C$.
+\end{proof}
+
+\begin{lem}\label{lem:sub-sub-topology}
+Let $X$ be a topological space and $V \subset U \subset X$.
+Then the subspace topology of $V$ induced from $U$
+is strictly equal as a set to the subspace topology induced from $X$.
+\end{lem}
+\begin{proof}
+Let $T_U$ and $T_X$ be the subspaces topologies on $V$
+induced from $U$ and $X$ respectively.
+Let $W \in T_U$ be an open set. Then, there exists an open
+$W' \subset U$ such that $W = W' \cap V$.
+Then, $W'$ being open in $U$ implies there exists an open
+$W' \subset X$, such that $W' = W'' \cap U$. Thus,
+$W = W'' \cap U \cap V = W'' \cap V$. This implies that
+$W \in T_X$.
+
+Now, suppose $W \in T_X$. Then, there exists an open $W'' \subset X$
+such that $W = W'' \cap V$. Then, $W = W \cap U$ because $W \subset U$,
+so that $W = W'' \cap V \cap U = (W'' \cap U) \cap V$. Here,
+$W'' \cap U \subset U$ is open in $U$. Thus, $W \in T_U$.
+\end{proof}
+
+\begin{lem}\label{lem:const-cont-fun-dense}
+Let $f : X \to Y$ be a contnuous function; $U \subset X$, dense; $y \in Y$,
+a closed point, and $f(x) = y$ for all $x \in U$. Then, $f(x) = y$
+for all $x \in X$.
+\end{lem}
+\begin{proof}
+Then, $f^{-1}(\set{y})$ is closed subset of $X$ containing $U$, and hence
+must contain $\cls{U} = X$, since $U$ is dense.
+\end{proof}
+
+\begin{lem}\label{lem:cont-lim-pt}
+Let $f : X \to Y$ be a continuous function and $U \subset X$, any subset.
+Suppose, there is some closed point $y \in Y$ such that $f(u) = y$ for all
+$u \in U$.
+Then, $f(u') = y$ for all $u' \in \cls{U}$.
+\end{lem}
+\begin{proof}
+$f^{-1}\br{\set{y}}$ is a closed subset of $X$ containing $U$. Hence,
+$\cls{U} \subset f^{-1}(\set{y})$.
+\end{proof}
+
+\begin{lem}\label{lem:cls-im}
+Let $f : Y \to X$ be a continuous function and $B \subset Y$.
+Then, $\cls{f(\cls{A})} = \cls{f(A)}$.
+\end{lem}
+\begin{proof}
+$A \subset \cls{A} \implies f(A) \subset f(\cls{A})
+\implies \cls{f(A)} \subset \cls{f(\cls{A})}$.
+On the other hand,
+$A \subset f^{-1}(f(A)) \subset f^{-1}(\cls{f(A)})$. By continuity
+of $f$, $f^{-1}(\cls{f(A)})$ is closed and hence contains $\cls{A}$.
+Thus, $f(\cls{A}) \subset f(f^{-1}(\cls{f(A)})) \subset \cls{f(A)}$
+and hence, $\cls{f(\cls{A})} \subset \cls{f(A)}$.
+\end{proof}
+
+\begin{lem}\label{lem:open-cov-T1}
+If a space $X$ has an open cover $\set{U_i}_{i \in I}$ such that
+each $U_i$ is $T_1$, then $X$ is $T_1$.
+\end{lem}
+\begin{proof}
+Let $x, y \in X$ with $x \neq y$. Then, $x \in U_i, y \in U_j$ for some
+$i, j \in I$. Then, if $y \in U_i$ as well, there
+are open neighbourhoods $x \in W_x \subset U_i, y \in W_y \subset U_i$,
+such that $x \not\in W_y, y \not\in W_x$, and $W_x, W_y$ are open in
+$X$ by \cref{cor:op-op-cls-cls}. If $x \in U_j$, a similar argument
+provides open neighbourhoods $x \in W_x' \subset U_j, y \in W_y' \subset U_j$
+such that $x \not\in W_y', y \not\in W_x'$.
+The only remaining case is $x \not\in U_j$, $y \not\in U_i$.
+In every case, we have open neighbourhoods of $x$ and $y$
+not containing the other. Thus, $X$ is $T_1$.
+\end{proof}
